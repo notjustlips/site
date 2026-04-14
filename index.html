@@ -69,7 +69,7 @@ body {
    NAV
 ───────────────────────────────────────────── */
 nav {
-  position: fixed; top: 52px; left: 0; right: 0; z-index: 500;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
   display: flex; justify-content: space-between; align-items: center;
   padding: 20px 56px;
   background: rgba(250,246,241,0.85);
@@ -79,40 +79,17 @@ nav {
 }
 nav.scrolled { padding: 14px 56px; box-shadow: 0 4px 40px rgba(34,19,16,0.07); }
 
-.top-booking-bar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 550;
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  padding: 12px 56px;
-  background: linear-gradient(90deg, #c98a2f 0%, #e7b75f 45%, #c07a5c 100%);
-  box-shadow: 0 10px 30px rgba(34,19,16,0.1);
-}
-.top-booking-copy {
-  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: #fff;
-}
-.top-booking-copy strong {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem; font-weight: 500; letter-spacing: 0.04em;
-  margin-right: 12px;
-  text-transform: none;
-}
-.top-booking-bar .top-booking-btn {
-  background: var(--deep);
-  color: #fff;
-  padding: 12px 26px;
-  box-shadow: 0 12px 24px rgba(34,19,16,0.18);
-}
-.top-booking-bar .top-booking-btn:hover {
-  background: #fff;
-  color: var(--deep);
-}
-
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem; font-weight: 400; letter-spacing: 0.05em;
-  color: var(--deep); text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
-.nav-logo span { font-style: italic; color: var(--rose); }
+.nav-logo img {
+  display: block;
+  width: 230px;
+  max-width: 42vw;
+  height: auto;
+}
 
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
@@ -143,7 +120,7 @@ nav.scrolled { padding: 14px 56px; box-shadow: 0 4px 40px rgba(34,19,16,0.07); }
 /* HERO LEFT */
 .hero-left {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 210px 72px 80px 80px;
+  padding: 160px 72px 80px 80px;
   position: relative; z-index: 2;
 }
 
@@ -599,11 +576,14 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 }
 .footer-brand { }
 .footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem; font-weight: 300; color: var(--cream);
-  letter-spacing: 0.05em; margin-bottom: 16px;
+  margin-bottom: 16px;
 }
-.footer-logo em { font-style: italic; color: var(--blush); }
+.footer-logo img {
+  display: block;
+  width: 240px;
+  max-width: 100%;
+  height: auto;
+}
 .footer-tagline { font-size: 0.72rem; line-height: 1.9; color: rgba(250,246,241,0.4); max-width: 260px; margin-bottom: 28px; }
 .footer-social { display: flex; gap: 14px; }
 .footer-social a {
@@ -667,24 +647,15 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
    RESPONSIVE
 ───────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .top-booking-bar {
-    padding: 10px 16px;
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-  }
-  .top-booking-copy { line-height: 1.6; }
-  .top-booking-bar .top-booking-btn {
-    width: 100%;
-    text-align: center;
-  }
-  nav { top: 90px; padding: 16px 24px; }
+  nav { top: 0; padding: 16px 24px; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; }
   .hero-right { height: 60vw; }
-  .hero-left { padding: 170px 28px 60px; }
+  .hero-left { padding: 120px 28px 60px; }
   .hero-title { font-size: 3.2rem; }
   .hero-float-card { left: 20px; bottom: 20px; }
+  .nav-logo img { width: 170px; max-width: 48vw; }
+  .footer-logo img { width: 190px; }
   .services-section, .gallery-section, .testimonials-section,
   .cta-section, .insta-section { padding: 72px 28px; }
   .services-grid, .testimonials-grid, .process-grid { grid-template-columns: 1fr; }
@@ -709,17 +680,11 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<div class="top-booking-bar">
-  <div class="top-booking-copy">
-    <strong>Book Now</strong>
-    Personalized aesthetic appointments on the Upper East Side
-  </div>
-  <a href="https://makeanappointment.online" target="_blank" class="btn top-booking-btn">Reserve Your Visit</a>
-</div>
-
 <!-- ─── NAV ─── -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">not<span>JUST</span>LIPS</a>
+  <a href="#" class="nav-logo" aria-label="notJUSTLIPS New York">
+    <img src="./logoNJL.PNG" alt="notJUSTLIPS New York">
+  </a>
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#about">About</a>
@@ -774,8 +739,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <img class="hero-img"
-      src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=900&q=85&fit=crop"
-      alt="Beautiful lips result · notJUSTLIPS NYC">
+      src="https://thb.tildacdn.net/tild6132-3638-4333-b339-643537333236/-/empty/IMG_9099.jpg"
+      alt="notJUSTLIPS treatment result · NYC">
     <div class="hero-overlay"></div>
     <div class="hero-float-card reveal delay-4">
       <p>"My lips finally look like me — but better."</p>
@@ -851,21 +816,29 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     <div class="service-card reveal delay-1">
       <div class="service-num">04</div>
       
-      <div class="service-name">Botox &amp; Wrinkle Smoothing</div>
-      <p class="service-desc">Targeted neuromodulator treatments designed to soften expression lines and refresh the face while preserving natural movement and a polished, rested appearance.</p>
-      <span class="service-tag">No Downtime</span>
+      <div class="service-name">Botox</div>
+      <p class="service-desc">Botox appointments are designed to relax targeted muscles with precision, helping maintain a refreshed appearance while preserving balance, expression, and facial harmony.</p>
+      <span class="service-tag">Targeted Treatment</span>
     </div>
 
     <div class="service-card reveal delay-2">
       <div class="service-num">05</div>
+      
+      <div class="service-name">Wrinkle Treatments</div>
+      <p class="service-desc">Fine-line and wrinkle-focused treatment planning may include product selection, placement strategy, and facial assessment tailored to the specific area of concern.</p>
+      <span class="service-tag">Customized Approach</span>
+    </div>
+
+    <div class="service-card reveal delay-3">
+      <div class="service-num">06</div>
       
       <div class="service-name">Fox Eyes &amp; Tear Trough</div>
       <p class="service-desc">Strategic enhancement for the eye area to create a more lifted, rested, and harmonious appearance, with treatment planning based on your facial structure.</p>
       <span class="service-tag">Eye Area Specialist</span>
     </div>
 
-    <div class="service-card reveal delay-3">
-      <div class="service-num">06</div>
+    <div class="service-card reveal delay-1">
+      <div class="service-num">07</div>
       
       <div class="service-name">Full Face Balancing</div>
       <p class="service-desc">A comprehensive non-surgical treatment plan to refine contours, support symmetry, and enhance overall facial harmony with subtle, sophisticated results.</p>
@@ -888,7 +861,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     полупрофиль или прямо, 700×900px+
     ════════════════════════════════════════════
     -->
-    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80&fit=crop"
+    <img src="https://thb.tildacdn.net/tild3234-3433-4034-b234-623631613435/-/empty/IMG_3056.jpg"
       alt="Olga Modlinska, RN · Founder notJUSTLIPS">
     <div class="about-img-label">Olga Modlinska, RN</div>
   </div>
@@ -973,7 +946,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <div class="gallery-item gallery-item--big reveal-left">
-      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=85&fit=crop" alt="Russian Lips result">
+      <img src="https://thb.tildacdn.net/tild3264-6135-4564-b338-653237393065/-/empty/D3190D56-661C-412E-8.jpeg" alt="Russian Lips result">
       <div class="gallery-overlay"><span>Russian Lips · Before &amp; After</span></div>
     </div>
 
@@ -982,7 +955,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Результат или процедура. 500×350px+
     -->
     <div class="gallery-item reveal delay-1">
-      <img src="https://images.unsplash.com/photo-1588453251771-cd919b362ed4?w=500&q=80&fit=crop" alt="Classic Lip Augmentation">
+      <img src="https://static.tildacdn.net/tild3031-3662-4439-a635-626364613232/269881D7-61F8-4AD5-8.jpeg" alt="Classic Lip Augmentation result">
       <div class="gallery-overlay"><span>Classic Augmentation</span></div>
     </div>
 
@@ -991,8 +964,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Интерьер клиники или атмосфера. 500×350px+
     -->
     <div class="gallery-item reveal delay-2">
-      <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80&fit=crop" alt="Clinic UES">
-      <div class="gallery-overlay"><span>Our Clinic · UES</span></div>
+      <img src="https://static.tildacdn.net/tild6332-6632-4235-b437-666234623636/246BB63A-CBBA-449D-B.jpeg" alt="Lip contour result">
+      <div class="gallery-overlay"><span>Lip Enhancement</span></div>
     </div>
 
     <!--
@@ -1000,7 +973,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Jawline или лицо. 500×350px+
     -->
     <div class="gallery-item reveal delay-1">
-      <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=80&fit=crop" alt="Jawline Sculpt">
+      <img src="https://static.tildacdn.net/tild3434-3164-4234-a362-336131666637/7669CE8A-3ED0-4D87-B.jpeg" alt="Jawline Sculpt result">
       <div class="gallery-overlay"><span>JawlineSculpt™</span></div>
     </div>
 
@@ -1009,7 +982,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Ещё один результат. 500×350px+
     -->
     <div class="gallery-item reveal delay-2">
-      <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500&q=80&fit=crop" alt="Facial Balancing">
+      <img src="https://static.tildacdn.net/tild6566-3466-4039-a434-656664636339/17F72EE9-6AB3-45E6-8.jpeg" alt="Facial Balancing result">
       <div class="gallery-overlay"><span>Facial Balancing</span></div>
     </div>
   </div>
@@ -1043,7 +1016,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Горизонтальное, 700×460px+
     ════════════════════════════════════════════
     -->
-    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=700&q=80&fit=crop" alt="Clinic procedure">
+    <img src="https://static.tildacdn.net/tild6438-6262-4332-b834-343934376163/IMG_9092.jpg" alt="notJUSTLIPS treatment room">
   </div>
 </section>
 
@@ -1111,27 +1084,27 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <div class="insta-item reveal delay-1">
-      <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=400&h=400&q=80&fit=crop" alt="">
+      <img src="https://static.tildacdn.net/tild6133-3137-4936-b933-356266386333/6A08A715-2541-4A5D-8.jpeg" alt="Client result">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-2">
-      <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=400&q=80&fit=crop" alt="">
+      <img src="https://static.tildacdn.net/tild3032-3064-4631-b331-313362333834/E1EA4BFD-2F4F-4115-B.jpeg" alt="Aesthetic result">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-3">
-      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=400&q=80&fit=crop" alt="">
+      <img src="https://static.tildacdn.net/tild6530-3337-4438-b538-656662623065/2DF413F3-7A5A-4D8B-A.jpeg" alt="Happy client review">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-1">
-      <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400&h=400&q=80&fit=crop" alt="">
+      <img src="https://static.tildacdn.net/tild6262-6237-4462-b934-343463363036/E2EE1039-1D91-4CD4-B.jpeg" alt="Booking manager">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-2">
-      <img src="https://images.unsplash.com/photo-1588453251771-cd919b362ed4?w=400&h=400&q=80&fit=crop" alt="">
+      <img src="https://static.tildacdn.net/tild6664-6635-4366-a137-346235373563/3C10C76B-C370-4955-A.jpeg" alt="Lip augmentation result">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-3">
-      <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=400&q=80&fit=crop" alt="">
+      <img src="https://static.tildacdn.net/tild3031-3662-4439-a635-626364613232/269881D7-61F8-4AD5-8.jpeg" alt="Lip contour detail">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
   </div>
@@ -1143,7 +1116,9 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 <footer id="contact">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo">not<em>JUST</em>LIPS</div>
+      <div class="footer-logo">
+        <img src="./logoNJL.PNG" alt="notJUSTLIPS New York">
+      </div>
       <p class="footer-tagline">Aesthetic injector clinic led by Olga Modlinska, RN, specializing in lip enhancement, facial balancing, and refined non-surgical treatments in Manhattan.</p>
       <div class="footer-social">
         <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank">IG</a>
