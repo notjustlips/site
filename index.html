@@ -69,28 +69,41 @@ body {
    NAV
 ───────────────────────────────────────────── */
 nav {
-  position: relative;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
   display: flex; justify-content: space-between; align-items: center;
   padding: 20px 56px;
   background: rgba(250,246,241,0.85);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(197,164,106,0.2);
-  transition: box-shadow 0.4s ease;
+  transition: padding 0.4s ease, box-shadow 0.4s ease;
 }
-nav.scrolled { box-shadow: none; }
+nav.scrolled { padding: 14px 56px; box-shadow: 0 4px 40px rgba(34,19,16,0.07); }
 
 .nav-logo {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-weight: 400; letter-spacing: 0.02em;
+  text-decoration: none; display: flex; align-items: baseline; gap: 0;
 }
-.nav-logo img {
-  display: block;
-  width: 252px;
-  max-width: 44vw;
-  height: auto;
+.logo-not {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 300;
+  color: var(--gold); font-size: 1em;
+  letter-spacing: 0.01em;
 }
+.logo-just {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; letter-spacing: 0.18em;
+  color: var(--deep); font-size: 0.95em; text-transform: uppercase;
+}
+.logo-lips {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; letter-spacing: 0.18em;
+  color: var(--deep); font-size: 0.95em; text-transform: uppercase;
+}
+footer .logo-not { color: var(--gold); }
+footer .logo-just { color: var(--cream); }
+footer .logo-lips { color: var(--cream); }
+
 
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
@@ -121,7 +134,7 @@ nav.scrolled { box-shadow: none; }
 /* HERO LEFT */
 .hero-left {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 108px 72px 80px 80px;
+  padding: 160px 72px 80px 80px;
   position: relative; z-index: 2;
 }
 
@@ -252,6 +265,7 @@ nav.scrolled { box-shadow: none; }
 .services-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
 }
+.services-grid .service-card:last-child:nth-child(3n+1) { grid-column: 1 / 2; }
 .service-card {
   background: #fff; padding: 48px 38px;
   position: relative; overflow: hidden; cursor: default;
@@ -390,7 +404,7 @@ nav.scrolled { box-shadow: none; }
 }
 .gallery-item--big { grid-row: 1 / 3; }
 .gallery-item img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
+  width: 100%; height: 100%; object-fit: cover; display: block; object-position: center top;
   transition: transform 0.7s ease, filter 0.4s ease;
   filter: saturate(0.75) brightness(0.96);
 }
@@ -441,8 +455,8 @@ nav.scrolled { box-shadow: none; }
    ════════════════════════════════════════════ */
 .fillers-img-wrap { position: relative; }
 .fillers-img-wrap img {
-  width: 100%; display: block; object-fit: cover;
-  height: 460px; opacity: 0.78; filter: sepia(0.1);
+  width: 100%; display: block; object-fit: cover; object-position: center center;
+  height: 460px; opacity: 0.88; filter: sepia(0.05);
   transition: transform 0.6s ease;
 }
 .fillers-img-wrap:hover img { transform: scale(1.03); }
@@ -577,14 +591,11 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 }
 .footer-brand { }
 .footer-logo {
-  margin-bottom: 16px;
+  display: flex; align-items: baseline; gap: 0;
+  font-size: 1.6rem; margin-bottom: 16px;
 }
-.footer-logo img {
-  display: block;
-  width: 228px;
-  max-width: 100%;
-  height: auto;
-}
+.footer-logo em { font-style: italic; color: var(--blush); }
+
 .footer-tagline { font-size: 0.72rem; line-height: 1.9; color: rgba(250,246,241,0.4); max-width: 260px; margin-bottom: 28px; }
 .footer-social { display: flex; gap: 14px; }
 .footer-social a {
@@ -652,11 +663,9 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; }
   .hero-right { height: 60vw; }
-  .hero-left { padding: 72px 28px 60px; }
+  .hero-left { padding: 120px 28px 60px; }
   .hero-title { font-size: 3.2rem; }
   .hero-float-card { left: 20px; bottom: 20px; }
-  .nav-logo img { width: 188px; max-width: 58vw; }
-  .footer-logo img { width: 184px; }
   .services-section, .gallery-section, .testimonials-section,
   .cta-section, .insta-section { padding: 72px 28px; }
   .services-grid, .testimonials-grid, .process-grid { grid-template-columns: 1fr; }
@@ -683,9 +692,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 
 <!-- ─── NAV ─── -->
 <nav id="navbar">
-  <a href="#" class="nav-logo" aria-label="notJUSTLIPS New York">
-    <img src="./logoNJL-wordmark.png" alt="notJUSTLIPS New York">
-  </a>
+  <a href="#" class="nav-logo"><span class="logo-not">not</span><span class="logo-just">JUST</span><span class="logo-lips">LIPS</span></a>
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#about">About</a>
@@ -702,16 +709,16 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="hero-left">
     <p class="hero-eyebrow">Upper East Side · New York City</p>
     <h1 class="hero-title">
-      <span class="line"><span>Refined</span></span>
-      <span class="line"><span><em>aesthetic</em></span></span>
-      <span class="line"><span>enhancement.</span></span>
+      <span class="line"><span>Not just</span></span>
+      <span class="line"><span><em>beautiful</em></span></span>
+      <span class="line"><span>lips.</span></span>
     </h1>
     <p class="hero-sub">
-      notJUSTLIPS is an Upper East Side aesthetic injector clinic led by Olga Modlinska, RN, offering Russian Lips, lip augmentation, facial balancing, jawline enhancement, and wrinkle-relaxing treatments with advanced USA and Europe-trained techniques.
+      notJUSTLIPS Clinic · Russian Lips, Facial Balancing &amp; Botox by Olga Modlinska, RN — trained in the USA &amp; Europe. No filters, no photoshop. Real results.
     </p>
     <div class="hero-ctas">
-      <a href="https://makeanappointment.online" target="_blank" class="btn btn-fill">Book Now</a>
-      <a href="#services" class="btn btn-outline">Explore Services</a>
+      <a href="https://makeanappointment.online" target="_blank" class="btn btn-fill">Book Appointment</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
     </div>
     <div class="hero-trust">
       <div class="trust-item reveal delay-1">
@@ -740,8 +747,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <img class="hero-img"
-      src="https://thb.tildacdn.net/tild6132-3638-4333-b339-643537333236/-/empty/IMG_9099.jpg"
-      alt="notJUSTLIPS treatment result · NYC">
+      src="IMG_5539.JPG"
+      alt="Beautiful lips result · notJUSTLIPS NYC">
     <div class="hero-overlay"></div>
     <div class="hero-float-card reveal delay-4">
       <p>"My lips finally look like me — but better."</p>
@@ -754,9 +761,10 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span>Russian Lips</span><span class="sep">✦</span>
-    <span>Botox</span><span class="sep">✦</span>
+    <span>Tox</span><span class="sep">✦</span>
     <span>Jawline Sculpt™</span><span class="sep">✦</span>
     <span>Fox Eyes</span><span class="sep">✦</span>
+    <span>Tear Trough</span><span class="sep">✦</span>
     <span>Facial Balancing</span><span class="sep">✦</span>
     <span>Dermal Fillers</span><span class="sep">✦</span>
     <span>Tear Trough</span><span class="sep">✦</span>
@@ -765,9 +773,10 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     <span>IV Drips</span><span class="sep">✦</span>
     <span>Cheeks &amp; Chin</span><span class="sep">✦</span>
     <span>Russian Lips</span><span class="sep">✦</span>
-    <span>Botox</span><span class="sep">✦</span>
+    <span>Tox</span><span class="sep">✦</span>
     <span>Jawline Sculpt™</span><span class="sep">✦</span>
     <span>Fox Eyes</span><span class="sep">✦</span>
+    <span>Tear Trough</span><span class="sep">✦</span>
     <span>Facial Balancing</span><span class="sep">✦</span>
     <span>Dermal Fillers</span><span class="sep">✦</span>
     <span>Tear Trough</span><span class="sep">✦</span>
@@ -785,7 +794,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="section-header">
     <p class="section-label reveal">What we offer</p>
     <h2 class="section-title reveal delay-1">
-      Advanced treatments,<br>tailored with <em>precision</em>
+      Every treatment,<br>crafted for <em>you</em>
     </h2>
   </div>
   <div class="services-grid">
@@ -794,7 +803,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       <div class="service-num">01</div>
       
       <div class="service-name">Russian Lips</div>
-      <p class="service-desc">A precise, vertically lifted lip enhancement designed for elegant shape, definition, and balanced volume. Performed with a conservative approach for polished, natural-looking results.</p>
+      <p class="service-desc">Maximum vertical height &amp; natural volume with one syringe. Our signature technique avoids migration and "duck lips" — just a defined, beautiful pout lasting 7–15 months.</p>
       <span class="service-tag">Signature Treatment</span>
     </div>
 
@@ -802,7 +811,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       <div class="service-num">02</div>
       
       <div class="service-name">Classic Lip Augmentation</div>
-      <p class="service-desc">Customized lip enhancement designed around your anatomy, proportions, and aesthetic goals using premium FDA-approved hyaluronic acid fillers available in the USA.</p>
+      <p class="service-desc">Natural volume and definition tailored to your unique lip shape. Using RHA Collection and Revanesse Versa — FDA-approved, long-lasting, dissolvable.</p>
       <span class="service-tag">FDA-Approved Fillers</span>
     </div>
 
@@ -810,39 +819,36 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       <div class="service-num">03</div>
       
       <div class="service-name">Signature JawlineSculpt™</div>
-      <p class="service-desc">Our signature lower-face contouring approach combines advanced methods to restore structure, refine the jawline, and create a more sculpted profile with lasting definition.</p>
+      <p class="service-desc">One-of-a-kind jawline correction technique combining multiple methods to create definition and restore missing volume. Results last 1–2 years.</p>
       <span class="service-tag">Exclusive Technique</span>
     </div>
 
     <div class="service-card reveal delay-1">
       <div class="service-num">04</div>
       
-      <div class="service-name">Botox</div>
-      <p class="service-desc">Botox appointments are designed to relax targeted muscles with precision, helping maintain a refreshed appearance while preserving balance, expression, and facial harmony.</p>
-      <span class="service-tag">Targeted Treatment</span>
+      <div class="service-name">Tox</div>
+      <p class="service-desc">Jeaveau or Daxxify — precise neuromodulator treatments tailored to your individual goals. Zero downtime, natural-looking results.</p>
+      <span class="service-tag">No Downtime</span>
     </div>
 
     <div class="service-card reveal delay-2">
       <div class="service-num">05</div>
-      
-      <div class="service-name">Wrinkle Treatments</div>
-      <p class="service-desc">Fine-line and wrinkle-focused treatment planning may include product selection, placement strategy, and facial assessment tailored to the specific area of concern.</p>
-      <span class="service-tag">Customized Approach</span>
+      <div class="service-name">Fox Eyes</div>
+      <p class="service-desc">Lift and elongate the outer corners of the eyes for a sculpted, almond-shaped gaze — subtle yet transformative.</p>
+      <span class="service-tag">Eye Lift</span>
     </div>
 
     <div class="service-card reveal delay-3">
       <div class="service-num">06</div>
-      
-      <div class="service-name">Fox Eyes &amp; Tear Trough</div>
-      <p class="service-desc">Strategic enhancement for the eye area to create a more lifted, rested, and harmonious appearance, with treatment planning based on your facial structure.</p>
-      <span class="service-tag">Eye Area Specialist</span>
+      <div class="service-name">Tear Trough</div>
+      <p class="service-desc">Targeted filler under the eyes to eliminate hollows and dark shadows — for a naturally rested, refreshed look.</p>
+      <span class="service-tag">Under-Eye Refresh</span>
     </div>
 
-    <div class="service-card reveal delay-1">
+    <div class="service-card reveal delay-3">
       <div class="service-num">07</div>
-      
       <div class="service-name">Full Face Balancing</div>
-      <p class="service-desc">A comprehensive non-surgical treatment plan to refine contours, support symmetry, and enhance overall facial harmony with subtle, sophisticated results.</p>
+      <p class="service-desc">Cheeks, chin, nose, contours — a comprehensive approach to facial harmony. Non-surgical, personalized, with results that look completely natural.</p>
       <span class="service-tag">Holistic Approach</span>
     </div>
 
@@ -862,7 +868,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     полупрофиль или прямо, 700×900px+
     ════════════════════════════════════════════
     -->
-    <img src="https://thb.tildacdn.net/tild3234-3433-4034-b234-623631613435/-/empty/IMG_3056.jpg"
+    <img src="IMG_5537.JPG"
       alt="Olga Modlinska, RN · Founder notJUSTLIPS">
     <div class="about-img-label">Olga Modlinska, RN</div>
   </div>
@@ -870,13 +876,13 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="about-text">
     <p class="section-label reveal">Our Founder</p>
     <h2 class="section-title reveal delay-1">
-      Global training,<br><em>elevated</em> results
+      European precision,<br><em>NYC</em> artistry
     </h2>
     <p class="about-para reveal delay-2">
-      Olga Modlinska, RN, is the founder of notJUSTLIPS and a highly skilled aesthetic injector with international training across the USA and Europe. Her work is grounded in advanced technique, facial harmony, and a consistently personalized approach to patient care.
+      Olga Modlinska, RN, is an internationally certified aesthetic nurse injector trained by top doctors in the USA, Russia, Turkey, and Europe. She attends international trainings regularly to stay at the forefront of techniques and protocols.
     </p>
     <p class="about-para reveal delay-2">
-      The clinic reflects her vision of thoughtful, natural-looking enhancement and ongoing education. Every injector at notJUSTLIPS brings more than five years of experience and a strong understanding of facial anatomy.
+      She founded notJUSTLIPS with a vision of holistic beauty — combining advanced European methods with a deeply personalized approach. Every injector at the clinic has 5+ years of experience.
     </p>
     <div class="about-stats">
       <div class="stat reveal delay-2">
@@ -901,25 +907,25 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 ══════════════════════════════════════════════ -->
 <section class="process-section">
   <p class="section-label reveal">How it works</p>
-  <h2 class="section-title reveal delay-1">A seamless path to <em>expert care</em></h2>
+  <h2 class="section-title reveal delay-1">Three steps to <em>your best look</em></h2>
   <div class="process-grid">
     <div class="process-step reveal delay-1">
       <div class="process-step-num">1</div>
       
-      <h3>Personal Consultation</h3>
-      <p>We review your goals, facial anatomy, and treatment priorities to build a plan that supports safety, balance, and the result you want to achieve.</p>
+      <h3>Free Consultation</h3>
+      <p>We discuss your beauty goals and create a personalized treatment plan tailored to your unique facial structure. No obligation, no pressure.</p>
     </div>
     <div class="process-step reveal delay-2">
       <div class="process-step-num">2</div>
       
-      <h3>Expert Treatment</h3>
-      <p>Your appointment is performed with precision, comfort, and attention to detail, using modern techniques and carefully selected products suited to your treatment plan.</p>
+      <h3>The Treatment</h3>
+      <p>Numbing cream is applied 20 minutes before. Our expert injectors work with precision and care — the procedure is comfortable and takes 30–60 min.</p>
     </div>
     <div class="process-step reveal delay-3">
       <div class="process-step-num">3</div>
       
-      <h3>Refined Results</h3>
-      <p>Expect elegant, natural-looking enhancement with product longevity that varies by treatment area, product choice, and your individual anatomy.</p>
+      <h3>Long-lasting Results</h3>
+      <p>Walk out looking refreshed and naturally enhanced. Results last from 7 months to 2 years with zero downtime — seamlessly fitting your lifestyle.</p>
     </div>
   </div>
 </section>
@@ -931,10 +937,10 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="gallery-intro">
     <div>
       <p class="section-label reveal">Our work</p>
-      <h2 class="section-title reveal delay-1">Visible artistry.<br><em>Authentic results.</em></h2>
+      <h2 class="section-title reveal delay-1">No filters.<br><em>No photoshop.</em></h2>
     </div>
     <p class="gallery-note reveal delay-2">
-      Before-and-after photos may show initial swelling. Final healed results settle softer and more naturally as the treatment area recovers.
+      All results shown are with initial swelling, which reduces 30–40% leaving a natural, beautiful result.
     </p>
   </div>
 
@@ -947,8 +953,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <div class="gallery-item gallery-item--big reveal-left">
-      <img src="https://thb.tildacdn.net/tild3264-6135-4564-b338-653237393065/-/empty/D3190D56-661C-412E-8.jpeg" alt="Russian Lips result">
-      <div class="gallery-overlay"><span>Russian Lips · Before &amp; After</span></div>
+      <img src="IMG_5532.JPG" alt="Jawline Correction · Before &amp; After">
+      <div class="gallery-overlay"><span>Jawline Correction · Before &amp; After</span></div>
     </div>
 
     <!--
@@ -956,7 +962,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Результат или процедура. 500×350px+
     -->
     <div class="gallery-item reveal delay-1">
-      <img src="https://static.tildacdn.net/tild3031-3662-4439-a635-626364613232/269881D7-61F8-4AD5-8.jpeg" alt="Classic Lip Augmentation result">
+      <img src="IMG_5533.JPG" alt="Jawline · Before &amp; After">
       <div class="gallery-overlay"><span>Classic Augmentation</span></div>
     </div>
 
@@ -965,8 +971,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Интерьер клиники или атмосфера. 500×350px+
     -->
     <div class="gallery-item reveal delay-2">
-      <img src="https://static.tildacdn.net/tild6332-6632-4235-b437-666234623636/246BB63A-CBBA-449D-B.jpeg" alt="Lip contour result">
-      <div class="gallery-overlay"><span>Lip Enhancement</span></div>
+      <img src="IMG_5537.JPG" alt="Full Face Balancing · Before &amp; After">
+      <div class="gallery-overlay"><span>Our Clinic · UES</span></div>
     </div>
 
     <!--
@@ -974,7 +980,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Jawline или лицо. 500×350px+
     -->
     <div class="gallery-item reveal delay-1">
-      <img src="https://static.tildacdn.net/tild3434-3164-4234-a362-336131666637/7669CE8A-3ED0-4D87-B.jpeg" alt="Jawline Sculpt result">
+      <img src="IMG_5538.JPG" alt="Lip Augmentation · Before &amp; After">
       <div class="gallery-overlay"><span>JawlineSculpt™</span></div>
     </div>
 
@@ -983,7 +989,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Ещё один результат. 500×350px+
     -->
     <div class="gallery-item reveal delay-2">
-      <img src="https://static.tildacdn.net/tild6566-3466-4039-a434-656664636339/17F72EE9-6AB3-45E6-8.jpeg" alt="Facial Balancing result">
+      <img src="IMG_5540.JPG" alt="Russian Lips · Before &amp; After">
       <div class="gallery-overlay"><span>Facial Balancing</span></div>
     </div>
   </div>
@@ -995,9 +1001,9 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 <section class="fillers-section">
   <div class="fillers-text">
     <p class="section-label reveal">Our Products</p>
-    <h2 class="section-title reveal delay-1">Premium products.<br><em>Clinical standards.</em></h2>
+    <h2 class="section-title reveal delay-1">Only the best<br><em>FDA-approved</em> fillers</h2>
     <p class="reveal delay-2">
-      We select premium fillers and wrinkle-relaxing products based on safety, performance, and suitability for each indication, helping us deliver refined results with a strong emphasis on comfort and consistency.
+      We work exclusively with premium dermal fillers handpicked by our providers through years of experience. Each product is chosen for durability, safety, and natural-looking results.
     </p>
     <div class="filler-tags reveal delay-3">
       <span class="filler-tag">RHA Collection</span>
@@ -1017,7 +1023,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Горизонтальное, 700×460px+
     ════════════════════════════════════════════
     -->
-    <img src="https://static.tildacdn.net/tild6438-6262-4332-b834-343934376163/IMG_9092.jpg" alt="notJUSTLIPS treatment room">
+    <img src="IMG_5291.PNG" alt="FDA-approved dermal fillers">
   </div>
 </section>
 
@@ -1026,7 +1032,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 ══════════════════════════════════════════════ -->
 <section class="testimonials-section" id="reviews">
   <p class="section-label reveal">Client Stories</p>
-  <h2 class="section-title reveal delay-1">The experience our clients<br><em>remember</em></h2>
+  <h2 class="section-title reveal delay-1">What our clients<br><em>are saying</em></h2>
   <div class="testimonials-grid">
     <div class="testimonial-card reveal delay-1">
       <div class="testimonial-stars">★★★★★</div>
@@ -1053,9 +1059,9 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="cta-text">
     <p class="cta-eyebrow reveal">✦ By Appointment Only</p>
     <h2 class="cta-title reveal delay-1">
-      Schedule your<br><em>consultation</em> today
+      Ready for your<br><em>most beautiful</em> self?
     </h2>
-    <p class="cta-sub reveal delay-2">Virtual and in-person appointments available · 144 East 74th Street, New York, NY</p>
+    <p class="cta-sub reveal delay-2">Free consultation · No obligation · 144 East 74th Street, NYC</p>
   </div>
   <div class="cta-right reveal delay-3">
     <a href="tel:+16467659568" class="cta-phone">(646) 765-9568</a>
@@ -1085,27 +1091,27 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <div class="insta-item reveal delay-1">
-      <img src="https://static.tildacdn.net/tild6133-3137-4936-b933-356266386333/6A08A715-2541-4A5D-8.jpeg" alt="Client result">
+      <img src="IMG_5539.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-2">
-      <img src="https://static.tildacdn.net/tild3032-3064-4631-b331-313362333834/E1EA4BFD-2F4F-4115-B.jpeg" alt="Aesthetic result">
+      <img src="IMG_5540.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-3">
-      <img src="https://static.tildacdn.net/tild6530-3337-4438-b538-656662623065/2DF413F3-7A5A-4D8B-A.jpeg" alt="Happy client review">
+      <img src="IMG_5538.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-1">
-      <img src="https://static.tildacdn.net/tild6262-6237-4462-b934-343463363036/E2EE1039-1D91-4CD4-B.jpeg" alt="Booking manager">
+      <img src="IMG_5532.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-2">
-      <img src="https://static.tildacdn.net/tild6664-6635-4366-a137-346235373563/3C10C76B-C370-4955-A.jpeg" alt="Lip augmentation result">
+      <img src="IMG_5533.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-3">
-      <img src="https://static.tildacdn.net/tild3031-3662-4439-a635-626364613232/269881D7-61F8-4AD5-8.jpeg" alt="Lip contour detail">
+      <img src="IMG_5537.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
   </div>
@@ -1117,10 +1123,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 <footer id="contact">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo">
-        <img src="./logoNJL-wordmark.png" alt="notJUSTLIPS New York">
-      </div>
-      <p class="footer-tagline">Aesthetic injector clinic led by Olga Modlinska, RN, specializing in lip enhancement, facial balancing, and refined non-surgical treatments in Manhattan.</p>
+      <div class="footer-logo"><span class="logo-not">not</span><span class="logo-just">JUST</span><span class="logo-lips">LIPS</span></div>
+      <p class="footer-tagline">Aesthetic Injector Clinic by Olga Modlinska, RN · Upper East Side, Manhattan, New York</p>
       <div class="footer-social">
         <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank">IG</a>
         <a href="https://www.facebook.com/modlinskalips/" target="_blank">FB</a>
@@ -1133,7 +1137,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       <a href="https://makeanappointment.online" target="_blank">Classic Lip Augmentation</a>
       <a href="https://makeanappointment.online" target="_blank">JawlineSculpt™</a>
       <a href="https://makeanappointment.online" target="_blank">Fox Eyes</a>
-      <a href="https://makeanappointment.online" target="_blank">Botox</a>
+      <a href="https://makeanappointment.online" target="_blank">Tear Trough</a>
+      <a href="https://makeanappointment.online" target="_blank">Tox</a>
       <a href="https://makeanappointment.online" target="_blank">Full Face Balancing</a>
     </div>
     <div class="footer-col">
@@ -1193,6 +1198,12 @@ document.querySelectorAll('a, button').forEach(el => {
     cursor.style.transform = 'scale(1)';
     ring.style.transform = 'scale(1)';
   });
+});
+
+/* ─── NAV SCROLL ─── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
 
 /* ─── SCROLL REVEAL ─── */
