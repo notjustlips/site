@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>notJUSTLIPS | NYC · Upper East Side</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Didact+Gothic&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   ROOT & RESET
+───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:  #FAF6F1;
+  --blush:  #EDD5C5;
+  --rose:   #C07A5C;
+  --deep:   #221310;
+  --gold:   #C5A46A;
+  --muted:  #7B5548;
+  --light:  #F3ECE5;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--deep);
+  font-family: 'Didact Gothic', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLL REVEAL UTILITY ─── */
+.reveal, .reveal-left, .reveal-right {
+  transition: opacity 0.85s cubic-bezier(.22,.68,0,1.2), transform 0.85s cubic-bezier(.22,.68,0,1.2);
+}
+.js-loaded .reveal        { opacity: 0; transform: translateY(40px); }
+.js-loaded .reveal-left   { opacity: 0; transform: translateX(-50px); }
+.js-loaded .reveal-right  { opacity: 0; transform: translateX(50px); }
+.js-loaded .reveal.visible,
+.js-loaded .reveal-left.visible,
+.js-loaded .reveal-right.visible { opacity: 1; transform: none; }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.45s; }
+.delay-5 { transition-delay: 0.6s; }
+
+/* ─── CURSOR DOT ─── */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--rose);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--rose);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.25s ease;
+  mix-blend-mode: multiply;
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 56px;
+  background: rgba(250,246,241,0.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(197,164,106,0.2);
+  transition: padding 0.4s ease, box-shadow 0.4s ease;
+}
+nav.scrolled { padding: 14px 56px; box-shadow: 0 4px 40px rgba(34,19,16,0.07); }
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 400; letter-spacing: 0.05em;
+  color: var(--deep); text-decoration: none;
+}
+.nav-logo span { font-style: italic; color: var(--rose); }
+
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--rose); }
+
+.nav-cta {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #fff !important;
+  background: var(--rose);
+  padding: 11px 26px;
+  text-decoration: none;
+  transition: background 0.3s ease !important;
+}
+.nav-cta:hover { background: var(--deep) !important; color: #fff !important; }
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 55% 45%;
+  position: relative; overflow: hidden;
+}
+
+/* HERO LEFT */
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 160px 72px 80px 80px;
+  position: relative; z-index: 2;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--rose); margin-bottom: 32px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow::before {
+  content: ''; width: 36px; height: 1px; background: var(--rose);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.8rem, 5.8vw, 6.2rem);
+  font-weight: 300; line-height: 0.98;
+  color: var(--deep); margin-bottom: 36px;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .line span { display: block; animation: slideUp 0.9s ease both; }
+.hero-title .line:nth-child(2) span { animation-delay: 0.12s; }
+.hero-title .line:nth-child(3) span { animation-delay: 0.22s; }
+.hero-title em { font-style: italic; color: var(--rose); }
+
+.hero-sub {
+  font-size: 0.8rem; line-height: 2; color: var(--muted);
+  max-width: 400px; margin-bottom: 56px;
+  animation: fadeUp 1s 0.35s ease both;
+}
+
+.hero-ctas { display: flex; gap: 14px; animation: fadeUp 1.1s 0.45s ease both; }
+
+.btn {
+  display: inline-block; text-decoration: none;
+  font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+  padding: 16px 38px; transition: all 0.35s ease; cursor: pointer;
+}
+.btn-fill { background: var(--rose); color: #fff; }
+.btn-fill:hover { background: var(--deep); }
+.btn-outline { border: 1px solid var(--rose); color: var(--rose); }
+.btn-outline:hover { background: var(--rose); color: #fff; }
+
+.hero-trust {
+  display: flex; gap: 36px; margin-top: 56px;
+  animation: fadeUp 1.2s 0.55s ease both;
+}
+.trust-item { }
+.trust-item strong {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300; color: var(--rose);
+}
+.trust-item span {
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+}
+
+/* HERO RIGHT — IMAGE AREA */
+.hero-right {
+  position: relative; overflow: hidden;
+}
+
+/* ════════════════════════════════════════════
+   📸 ФОТО #1 — HERO ГЛАВНОЕ ФОТО
+   Замените src на свою фотографию результата губ.
+   Рекомендации: портрет, крупный план губ/лица,
+   вертикальная ориентация, 900×1200px минимум.
+   ════════════════════════════════════════════ */
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transform: scale(1.05);
+  animation: heroZoom 8s ease forwards;
+  filter: brightness(0.93) saturate(0.88);
+}
+
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(250,246,241,0.22) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-float-card {
+  position: absolute; bottom: 52px; left: -32px;
+  background: #fff; padding: 22px 30px;
+  border-left: 3px solid var(--rose);
+  box-shadow: 0 16px 60px rgba(34,19,16,0.12);
+  animation: fadeUp 1.3s 0.7s ease both;
+  max-width: 240px;
+}
+.hero-float-card p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-style: italic; color: var(--deep);
+  line-height: 1.5; margin-bottom: 8px;
+}
+.hero-float-card span { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); }
+
+/* ─────────────────────────────────────────────
+   MARQUEE
+───────────────────────────────────────────── */
+.marquee-wrap { background: var(--deep); padding: 16px 0; overflow: hidden; white-space: nowrap; }
+.marquee-track { display: inline-block; animation: marquee 26s linear infinite; }
+.marquee-track span {
+  font-size: 0.6rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold); margin: 0 36px;
+}
+.marquee-track .sep { color: var(--rose); font-size: 0.5rem; margin: 0 4px; }
+
+/* ─────────────────────────────────────────────
+   SERVICES
+───────────────────────────────────────────── */
+.services-section { padding: 120px 80px; }
+
+.section-header { margin-bottom: 70px; }
+.section-label {
+  font-size: 0.6rem; letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--rose); margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
+}
+.section-label::after { content: ''; flex: 1; max-width: 80px; height: 1px; background: var(--rose); }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 4vw, 4rem); font-weight: 300;
+  color: var(--deep); line-height: 1.08; max-width: 560px;
+}
+.section-title em { font-style: italic; color: var(--rose); }
+
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+}
+.service-card {
+  background: #fff; padding: 48px 38px;
+  position: relative; overflow: hidden; cursor: default;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.service-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s ease;
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(34,19,16,0.1); }
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300;
+  color: rgba(192,122,92,0.1); line-height: 1; margin-bottom: 16px;
+}
+.service-icon { font-size: 1.4rem; margin-bottom: 14px; }
+.service-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; color: var(--deep); margin-bottom: 14px;
+}
+.service-desc { font-size: 0.76rem; line-height: 1.9; color: var(--muted); margin-bottom: 20px; }
+.service-tag {
+  display: inline-block; font-size: 0.56rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--rose);
+  border: 1px solid rgba(192,122,92,0.3); padding: 5px 12px;
+}
+
+/* ─────────────────────────────────────────────
+   ABOUT — SPLIT SECTION
+───────────────────────────────────────────── */
+.about-section {
+  display: grid; grid-template-columns: 1fr 1fr; min-height: 700px;
+  background: var(--deep);
+}
+
+.about-img-side { position: relative; overflow: hidden; }
+
+/* ════════════════════════════════════════════
+   📸 ФОТО #2 — OLGA PORTRAIT
+   Вставьте фото Ольги. Рекомендации:
+   профессиональный портрет, 700×900px+,
+   нейтральный или светлый фон.
+   ════════════════════════════════════════════ */
+.about-img-side img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  opacity: 0.72; filter: sepia(0.15) brightness(0.95);
+  transition: transform 0.8s ease;
+}
+.about-img-side:hover img { transform: scale(1.04); }
+
+.about-img-label {
+  position: absolute; bottom: 32px; left: 32px;
+  background: var(--rose); color: #fff;
+  font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
+  padding: 10px 18px;
+}
+
+.about-text { padding: 90px 80px; display: flex; flex-direction: column; justify-content: center; }
+.about-text .section-label { color: var(--gold); }
+.about-text .section-title { color: var(--cream); max-width: 480px; margin-bottom: 28px; }
+.about-text .section-title em { color: var(--blush); }
+.about-para { font-size: 0.8rem; line-height: 2.1; color: rgba(250,246,241,0.65); margin-bottom: 12px; max-width: 460px; }
+.about-para:last-of-type { margin-bottom: 44px; }
+
+.about-stats { display: flex; gap: 44px; margin-bottom: 48px; }
+.stat strong {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem; font-weight: 300; color: var(--gold); line-height: 1;
+  transition: transform 0.3s ease;
+}
+.stat:hover strong { transform: scale(1.08); }
+.stat span { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,246,241,0.4); }
+
+.btn-light { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+.btn-light:hover { background: var(--gold); color: var(--deep); }
+
+/* ─────────────────────────────────────────────
+   PROCESS STEPS
+───────────────────────────────────────────── */
+.process-section { padding: 120px 80px; background: var(--light); }
+.process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 70px; }
+.process-step {
+  background: #fff; padding: 56px 40px;
+  position: relative; overflow: hidden;
+  transition: transform 0.4s ease;
+}
+.process-step:hover { transform: translateY(-5px); }
+.process-step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 6rem; font-weight: 300; color: rgba(192,122,92,0.07);
+  position: absolute; top: -10px; right: 20px; line-height: 1;
+  pointer-events: none;
+}
+.step-icon { font-size: 1.6rem; margin-bottom: 18px; }
+.process-step h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400; color: var(--deep); margin-bottom: 12px;
+}
+.process-step p { font-size: 0.76rem; line-height: 1.9; color: var(--muted); }
+
+/* ─────────────────────────────────────────────
+   GALLERY
+───────────────────────────────────────────── */
+.gallery-section { padding: 120px 80px; }
+
+.gallery-intro {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 48px; gap: 32px;
+}
+.gallery-note {
+  font-size: 0.73rem; line-height: 1.8; color: var(--muted); max-width: 360px;
+  font-style: italic;
+}
+
+/* ════════════════════════════════════════════
+   📸 ГАЛЕРЕЯ — 5 ФОТО РЕЗУЛЬТАТОВ
+   Каждый .gallery-item содержит img.
+   Замените src на свои фото (before/after, результаты).
+   Рекомендации:
+   • gallery-item--big (первый) → 800×1100px+
+   • остальные → 500×600px+
+   • Все фото в одном стиле/тоне
+   ════════════════════════════════════════════ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr;
+  grid-template-rows: 320px 320px;
+  gap: 4px;
+}
+.gallery-item {
+  overflow: hidden; position: relative; cursor: pointer;
+}
+.gallery-item--big { grid-row: 1 / 3; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.7s ease, filter 0.4s ease;
+  filter: saturate(0.75) brightness(0.96);
+}
+.gallery-item:hover img { transform: scale(1.08); filter: saturate(1) brightness(1); }
+
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(34,19,16,0.55) 0%, transparent 55%);
+  opacity: 0; transition: opacity 0.4s ease;
+  display: flex; align-items: flex-end; padding: 22px 20px;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span {
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #fff;
+}
+
+.gallery-photo-hint {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(250,246,241,0.6); text-align: center; pointer-events: none;
+  background: rgba(34,19,16,0.3); padding: 10px 16px;
+}
+
+/* ─────────────────────────────────────────────
+   FILLERS INFO
+───────────────────────────────────────────── */
+.fillers-section {
+  padding: 100px 80px;
+  background: var(--deep);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.fillers-text .section-label { color: var(--gold); }
+.fillers-text .section-title { color: var(--cream); margin-bottom: 28px; }
+.fillers-text .section-title em { color: var(--blush); }
+.fillers-text p { font-size: 0.8rem; line-height: 2.1; color: rgba(250,246,241,0.65); margin-bottom: 36px; }
+
+.filler-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.filler-tag {
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  border: 1px solid rgba(197,164,106,0.35); color: var(--gold);
+  padding: 8px 16px; transition: all 0.3s ease;
+}
+.filler-tag:hover { background: var(--gold); color: var(--deep); border-color: var(--gold); }
+
+/* ════════════════════════════════════════════
+   📸 ФОТО #7 — CLINIC / ATMOSPHERE
+   Фото кабинета или процедуры, горизонтальное.
+   ════════════════════════════════════════════ */
+.fillers-img-wrap { position: relative; }
+.fillers-img-wrap img {
+  width: 100%; display: block; object-fit: cover;
+  height: 460px; opacity: 0.78; filter: sepia(0.1);
+  transition: transform 0.6s ease;
+}
+.fillers-img-wrap:hover img { transform: scale(1.03); }
+.fillers-img-wrap::before {
+  content: ''; position: absolute; inset: -12px;
+  border: 1px solid rgba(197,164,106,0.2); z-index: -1;
+}
+
+/* ─────────────────────────────────────────────
+   TESTIMONIALS
+───────────────────────────────────────────── */
+.testimonials-section { padding: 120px 80px; text-align: center; background: var(--cream); }
+.testimonials-section .section-label { justify-content: center; }
+.testimonials-section .section-label::after { display: none; }
+.testimonials-section .section-title { margin: 0 auto 64px; text-align: center; max-width: 100%; }
+
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.testimonial-card {
+  background: #fff; padding: 48px 36px; text-align: left;
+  border-top: 2px solid transparent;
+  transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+.testimonial-card:hover {
+  border-color: var(--rose);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(34,19,16,0.08);
+}
+.testimonial-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 20px; }
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-style: italic; font-weight: 300;
+  color: var(--deep); line-height: 1.7; margin-bottom: 24px;
+}
+.testimonial-author { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); }
+
+/* ─────────────────────────────────────────────
+   CTA BOOKING STRIP
+───────────────────────────────────────────── */
+.cta-section {
+  position: relative; overflow: hidden;
+  padding: 130px 80px;
+  background: linear-gradient(140deg, #C07A5C 0%, #8B4E34 60%, #221310 100%);
+  display: flex; justify-content: space-between; align-items: center; gap: 40px;
+}
+.cta-section::before {
+  content: 'notJUSTLIPS';
+  position: absolute; bottom: -40px; right: -20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11rem; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,0.04); white-space: nowrap; pointer-events: none; line-height: 1;
+}
+
+.cta-text { }
+.cta-eyebrow {
+  font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-bottom: 20px;
+}
+.cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 4.5vw, 4.2rem); font-weight: 300;
+  color: #fff; line-height: 1.08; max-width: 560px;
+}
+.cta-title em { font-style: italic; color: var(--blush); }
+.cta-sub { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 16px; line-height: 1.8; }
+
+.cta-right { flex-shrink: 0; text-align: center; }
+.cta-phone {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 300; color: var(--blush);
+  text-decoration: none; margin-bottom: 8px;
+  transition: color 0.3s;
+}
+.cta-phone:hover { color: #fff; }
+.cta-phone-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 24px; display: block; }
+.btn-white-cta {
+  display: inline-block; padding: 18px 52px;
+  background: #fff; color: var(--rose);
+  text-decoration: none; font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+  font-weight: 500; transition: all 0.3s ease; white-space: nowrap;
+}
+.btn-white-cta:hover { background: var(--deep); color: var(--blush); }
+
+/* ─────────────────────────────────────────────
+   INSTAGRAM STRIP
+───────────────────────────────────────────── */
+.insta-section { padding: 100px 80px; background: var(--light); }
+.insta-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+.insta-handle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-style: italic; color: var(--rose);
+}
+.insta-link { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); text-decoration: none; border-bottom: 1px solid rgba(192,122,92,0.3); padding-bottom: 3px; }
+
+/* ════════════════════════════════════════════
+   📸 INSTAGRAM — 6 ФОТО
+   Вставьте свои фото из Instagram.
+   Квадратные, 600×600px+.
+   Подписи укажите в .insta-caption
+   ════════════════════════════════════════════ */
+.insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+.insta-item {
+  aspect-ratio: 1/1; overflow: hidden; position: relative; cursor: pointer;
+}
+.insta-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s ease, filter 0.4s ease;
+  filter: saturate(0.7);
+}
+.insta-item:hover img { transform: scale(1.1); filter: saturate(1); }
+.insta-overlay {
+  position: absolute; inset: 0;
+  background: rgba(34,19,16,0.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.insta-plus {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300; color: #fff;
+  line-height: 1; letter-spacing: 0.05em;
+}
+.insta-item:hover .insta-overlay { opacity: 1; }
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+footer { background: var(--deep); padding: 72px 80px 40px; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px; padding-bottom: 56px;
+  border-bottom: 1px solid rgba(197,164,106,0.12);
+  margin-bottom: 32px;
+}
+.footer-brand { }
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 300; color: var(--cream);
+  letter-spacing: 0.05em; margin-bottom: 16px;
+}
+.footer-logo em { font-style: italic; color: var(--blush); }
+.footer-tagline { font-size: 0.72rem; line-height: 1.9; color: rgba(250,246,241,0.4); max-width: 260px; margin-bottom: 28px; }
+.footer-social { display: flex; gap: 14px; }
+.footer-social a {
+  width: 36px; height: 36px; border: 1px solid rgba(197,164,106,0.25);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 0.7rem; text-decoration: none;
+  transition: all 0.3s ease;
+}
+.footer-social a:hover { background: var(--gold); color: var(--deep); border-color: var(--gold); }
+
+.footer-col h4 {
+  font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+}
+.footer-col p, .footer-col a {
+  display: block; font-size: 0.77rem; line-height: 2.2;
+  color: rgba(250,246,241,0.45); text-decoration: none; transition: color 0.25s;
+}
+.footer-col a:hover { color: var(--blush); }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.62rem; color: rgba(250,246,241,0.25); letter-spacing: 0.08em;
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+@keyframes heroZoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── DECORATIVE CIRCLES ─── */
+.deco-circle {
+  position: absolute; border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 960px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { height: 60vw; }
+  .hero-left { padding: 120px 28px 60px; }
+  .hero-title { font-size: 3.2rem; }
+  .hero-float-card { left: 20px; bottom: 20px; }
+  .services-section, .gallery-section, .testimonials-section,
+  .cta-section, .insta-section { padding: 72px 28px; }
+  .services-grid, .testimonials-grid, .process-grid { grid-template-columns: 1fr; }
+  .about-section { grid-template-columns: 1fr; }
+  .about-img-side { height: 55vw; }
+  .about-text { padding: 60px 28px; }
+  .fillers-section { grid-template-columns: 1fr; padding: 80px 28px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gallery-item--big { grid-row: auto; }
+  .insta-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cta-section { flex-direction: column; text-align: center; }
+  .cta-title { max-width: 100%; }
+  footer { padding: 48px 28px 28px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">not<span>JUST</span>LIPS</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Results</a>
+    <a href="#contact">Contact</a>
+    <a href="https://makeanappointment.online" target="_blank" class="btn nav-cta">Book Now</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Upper East Side · New York City</p>
+    <h1 class="hero-title">
+      <span class="line"><span>Not just</span></span>
+      <span class="line"><span><em>beautiful</em></span></span>
+      <span class="line"><span>lips.</span></span>
+    </h1>
+    <p class="hero-sub">
+      notJUSTLIPS Clinic · Russian Lips, Facial Balancing &amp; Botox by Olga Modlinska, RN — trained in the USA &amp; Europe. No filters, no photoshop. Real results.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://makeanappointment.online" target="_blank" class="btn btn-fill">Book Appointment</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item reveal delay-1">
+        <strong>5+</strong>
+        <span>Years<br>experience</span>
+      </div>
+      <div class="trust-item reveal delay-2">
+        <strong>50K</strong>
+        <span>Instagram<br>followers</span>
+      </div>
+      <div class="trust-item reveal delay-3">
+        <strong>100%</strong>
+        <span>FDA-approved<br>products</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!--
+    ════════════════════════════════════════════
+    📸 ФОТО #1 — HERO ГЛАВНОЕ ФОТО
+    Замените src на СВОЮ фотографию.
+    Идеально: крупный план результата губ,
+    красивый портрет клиентки, вертикальное.
+    Размер: минимум 900×1200px
+    ════════════════════════════════════════════
+    -->
+    <img class="hero-img"
+      src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=900&q=85&fit=crop"
+      alt="Beautiful lips result · notJUSTLIPS NYC">
+    <div class="hero-overlay"></div>
+    <div class="hero-float-card reveal delay-4">
+      <p>"My lips finally look like me — but better."</p>
+      <span>★★★★★ · Client, Manhattan</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Russian Lips</span><span class="sep">✦</span>
+    <span>Botox</span><span class="sep">✦</span>
+    <span>Jawline Sculpt™</span><span class="sep">✦</span>
+    <span>Fox Eyes</span><span class="sep">✦</span>
+    <span>Facial Balancing</span><span class="sep">✦</span>
+    <span>Dermal Fillers</span><span class="sep">✦</span>
+    <span>Tear Trough</span><span class="sep">✦</span>
+    <span>RF Microneedling</span><span class="sep">✦</span>
+    <span>Non-surgical Nose Job</span><span class="sep">✦</span>
+    <span>IV Drips</span><span class="sep">✦</span>
+    <span>Cheeks &amp; Chin</span><span class="sep">✦</span>
+    <span>Russian Lips</span><span class="sep">✦</span>
+    <span>Botox</span><span class="sep">✦</span>
+    <span>Jawline Sculpt™</span><span class="sep">✦</span>
+    <span>Fox Eyes</span><span class="sep">✦</span>
+    <span>Facial Balancing</span><span class="sep">✦</span>
+    <span>Dermal Fillers</span><span class="sep">✦</span>
+    <span>Tear Trough</span><span class="sep">✦</span>
+    <span>RF Microneedling</span><span class="sep">✦</span>
+    <span>Non-surgical Nose Job</span><span class="sep">✦</span>
+    <span>IV Drips</span><span class="sep">✦</span>
+    <span>Cheeks &amp; Chin</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════ -->
+<section class="services-section" id="services">
+  <div class="section-header">
+    <p class="section-label reveal">What we offer</p>
+    <h2 class="section-title reveal delay-1">
+      Every treatment,<br>crafted for <em>you</em>
+    </h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal delay-1">
+      <div class="service-num">01</div>
+      
+      <div class="service-name">Russian Lips</div>
+      <p class="service-desc">Maximum vertical height &amp; natural volume with one syringe. Our signature technique avoids migration and "duck lips" — just a defined, beautiful pout lasting 7–15 months.</p>
+      <span class="service-tag">Signature Treatment</span>
+    </div>
+
+    <div class="service-card reveal delay-2">
+      <div class="service-num">02</div>
+      
+      <div class="service-name">Classic Lip Augmentation</div>
+      <p class="service-desc">Natural volume and definition tailored to your unique lip shape. Using RHA Collection and Revanesse Versa — FDA-approved, long-lasting, dissolvable.</p>
+      <span class="service-tag">FDA-Approved Fillers</span>
+    </div>
+
+    <div class="service-card reveal delay-3">
+      <div class="service-num">03</div>
+      
+      <div class="service-name">Signature JawlineSculpt™</div>
+      <p class="service-desc">One-of-a-kind jawline correction technique combining multiple methods to create definition and restore missing volume. Results last 1–2 years.</p>
+      <span class="service-tag">Exclusive Technique</span>
+    </div>
+
+    <div class="service-card reveal delay-1">
+      <div class="service-num">04</div>
+      
+      <div class="service-name">Botox &amp; Wrinkle Smoothing</div>
+      <p class="service-desc">Jeaveau or Daxxify treatments to smooth fine lines and wrinkles — a refreshed, youthful look with zero downtime and natural-looking results.</p>
+      <span class="service-tag">No Downtime</span>
+    </div>
+
+    <div class="service-card reveal delay-2">
+      <div class="service-num">05</div>
+      
+      <div class="service-name">Fox Eyes &amp; Tear Trough</div>
+      <p class="service-desc">Elongate and lift the eye area for an almond-shaped gaze. Refresh under-eyes to eliminate hollows and dark shadows for a naturally rested look.</p>
+      <span class="service-tag">Eye Area Specialist</span>
+    </div>
+
+    <div class="service-card reveal delay-3">
+      <div class="service-num">06</div>
+      
+      <div class="service-name">Full Face Balancing</div>
+      <p class="service-desc">Cheeks, chin, nose, contours — a comprehensive approach to facial harmony. Non-surgical, personalized, with results that look completely natural.</p>
+      <span class="service-tag">Holistic Approach</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT OLGA
+══════════════════════════════════════════════ -->
+<div class="about-section" id="about">
+  <div class="about-img-side reveal-left">
+    <!--
+    ════════════════════════════════════════════
+    📸 ФОТО #2 — ПОРТРЕТ ОЛЬГИ
+    Вставьте профессиональное фото Ольги Модлинской.
+    Рекомендации: нейтральный фон, хорошее освещение,
+    полупрофиль или прямо, 700×900px+
+    ════════════════════════════════════════════
+    -->
+    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80&fit=crop"
+      alt="Olga Modlinska, RN · Founder notJUSTLIPS">
+    <div class="about-img-label">Olga Modlinska, RN</div>
+  </div>
+
+  <div class="about-text">
+    <p class="section-label reveal">Our Founder</p>
+    <h2 class="section-title reveal delay-1">
+      European precision,<br><em>NYC</em> artistry
+    </h2>
+    <p class="about-para reveal delay-2">
+      Olga Modlinska, RN, is an internationally certified aesthetic nurse injector trained by top doctors in the USA, Russia, Turkey, and Europe. She attends international trainings regularly to stay at the forefront of techniques and protocols.
+    </p>
+    <p class="about-para reveal delay-2">
+      She founded notJUSTLIPS with a vision of holistic beauty — combining advanced European methods with a deeply personalized approach. Every injector at the clinic has 5+ years of experience.
+    </p>
+    <div class="about-stats">
+      <div class="stat reveal delay-2">
+        <strong>5+</strong>
+        <span>Years<br>injecting</span>
+      </div>
+      <div class="stat reveal delay-3">
+        <strong>50K</strong>
+        <span>Instagram<br>community</span>
+      </div>
+      <div class="stat reveal delay-4">
+        <strong>2+</strong>
+        <span>Years<br>results last</span>
+      </div>
+    </div>
+    <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank" class="btn btn-light reveal delay-3">Follow on Instagram</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PROCESS
+══════════════════════════════════════════════ -->
+<section class="process-section">
+  <p class="section-label reveal">How it works</p>
+  <h2 class="section-title reveal delay-1">Three steps to <em>your best look</em></h2>
+  <div class="process-grid">
+    <div class="process-step reveal delay-1">
+      <div class="process-step-num">1</div>
+      
+      <h3>Free Consultation</h3>
+      <p>We discuss your beauty goals and create a personalized treatment plan tailored to your unique facial structure. No obligation, no pressure.</p>
+    </div>
+    <div class="process-step reveal delay-2">
+      <div class="process-step-num">2</div>
+      
+      <h3>The Treatment</h3>
+      <p>Numbing cream is applied 20 minutes before. Our expert injectors work with precision and care — the procedure is comfortable and takes 30–60 min.</p>
+    </div>
+    <div class="process-step reveal delay-3">
+      <div class="process-step-num">3</div>
+      
+      <h3>Long-lasting Results</h3>
+      <p>Walk out looking refreshed and naturally enhanced. Results last from 7 months to 2 years with zero downtime — seamlessly fitting your lifestyle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     GALLERY
+══════════════════════════════════════════════ -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-intro">
+    <div>
+      <p class="section-label reveal">Our work</p>
+      <h2 class="section-title reveal delay-1">No filters.<br><em>No photoshop.</em></h2>
+    </div>
+    <p class="gallery-note reveal delay-2">
+      All results shown are with initial swelling, which reduces 30–40% leaving a natural, beautiful result.
+    </p>
+  </div>
+
+  <div class="gallery-grid">
+    <!--
+    ════════════════════════════════════════════
+    📸 ФОТО #3 — БОЛЬШОЕ ФОТО (слева, занимает оба ряда)
+    Лучшее before/after или крупный результат губ.
+    Размер: 800×650px+, вертикальное.
+    ════════════════════════════════════════════
+    -->
+    <div class="gallery-item gallery-item--big reveal-left">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=85&fit=crop" alt="Russian Lips result">
+      <div class="gallery-overlay"><span>Russian Lips · Before &amp; After</span></div>
+    </div>
+
+    <!--
+    📸 ФОТО #4 — маленькое верхнее правое
+    Результат или процедура. 500×350px+
+    -->
+    <div class="gallery-item reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1588453251771-cd919b362ed4?w=500&q=80&fit=crop" alt="Classic Lip Augmentation">
+      <div class="gallery-overlay"><span>Classic Augmentation</span></div>
+    </div>
+
+    <!--
+    📸 ФОТО #5 — маленькое верхнее дальнее
+    Интерьер клиники или атмосфера. 500×350px+
+    -->
+    <div class="gallery-item reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80&fit=crop" alt="Clinic UES">
+      <div class="gallery-overlay"><span>Our Clinic · UES</span></div>
+    </div>
+
+    <!--
+    📸 ФОТО #6 — маленькое нижнее правое
+    Jawline или лицо. 500×350px+
+    -->
+    <div class="gallery-item reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=80&fit=crop" alt="Jawline Sculpt">
+      <div class="gallery-overlay"><span>JawlineSculpt™</span></div>
+    </div>
+
+    <!--
+    📸 ФОТО #7 — маленькое нижнее дальнее
+    Ещё один результат. 500×350px+
+    -->
+    <div class="gallery-item reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500&q=80&fit=crop" alt="Facial Balancing">
+      <div class="gallery-overlay"><span>Facial Balancing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FILLERS INFO
+══════════════════════════════════════════════ -->
+<section class="fillers-section">
+  <div class="fillers-text">
+    <p class="section-label reveal">Our Products</p>
+    <h2 class="section-title reveal delay-1">Only the best<br><em>FDA-approved</em> fillers</h2>
+    <p class="reveal delay-2">
+      We work exclusively with premium dermal fillers handpicked by our providers through years of experience. Each product is chosen for durability, safety, and natural-looking results.
+    </p>
+    <div class="filler-tags reveal delay-3">
+      <span class="filler-tag">RHA Collection</span>
+      <span class="filler-tag">Revanesse Versa</span>
+      <span class="filler-tag">Juvederm XC</span>
+      <span class="filler-tag">Restylane Lyft</span>
+      <span class="filler-tag">Jeaveau</span>
+      <span class="filler-tag">Daxxify</span>
+    </div>
+  </div>
+
+  <div class="fillers-img-wrap reveal-right">
+    <!--
+    ════════════════════════════════════════════
+    📸 ФОТО #8 — ПРОЦЕДУРА / АТМОСФЕРА
+    Фото кабинета, процедуры или инструментов.
+    Горизонтальное, 700×460px+
+    ════════════════════════════════════════════
+    -->
+    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=700&q=80&fit=crop" alt="Clinic procedure">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════ -->
+<section class="testimonials-section" id="reviews">
+  <p class="section-label reveal">Client Stories</p>
+  <h2 class="section-title reveal delay-1">What our clients<br><em>are saying</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal delay-1">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"My lips finally look like me — but better. Olga listened to exactly what I wanted and the result was even more beautiful than I imagined."</p>
+      <p class="testimonial-author">— Client, Upper East Side</p>
+    </div>
+    <div class="testimonial-card reveal delay-2">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I was nervous about getting fillers for the first time, but the team made me feel completely at ease. The results look so natural — nobody can tell!"</p>
+      <p class="testimonial-author">— Client, Manhattan</p>
+    </div>
+    <div class="testimonial-card reveal delay-3">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The JawlineSculpt technique is truly one of a kind. I've been to other clinics and nothing compares — my jawline has never looked this defined."</p>
+      <p class="testimonial-author">— Client, New York City</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA BOOKING
+══════════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="cta-text">
+    <p class="cta-eyebrow reveal">✦ By Appointment Only</p>
+    <h2 class="cta-title reveal delay-1">
+      Ready for your<br><em>most beautiful</em> self?
+    </h2>
+    <p class="cta-sub reveal delay-2">Free consultation · No obligation · 144 East 74th Street, NYC</p>
+  </div>
+  <div class="cta-right reveal delay-3">
+    <a href="tel:+16467659568" class="cta-phone">(646) 765-9568</a>
+    <span class="cta-phone-label">Call or text to book</span>
+    <a href="https://makeanappointment.online" target="_blank" class="btn-white-cta">Book Online →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     INSTAGRAM
+══════════════════════════════════════════════ -->
+<section class="insta-section">
+  <div class="insta-header">
+    <div>
+      <p class="section-label reveal">Follow our work</p>
+      <p class="insta-handle reveal delay-1">@modlinskalips.nyc</p>
+    </div>
+    <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank" class="insta-link reveal">See all on Instagram →</a>
+  </div>
+  <div class="insta-grid">
+    <!--
+    ════════════════════════════════════════════
+    📸 ИНСТАГРАМ — 6 КВАДРАТНЫХ ФОТО
+    Вставьте скриншоты/фото из вашего Instagram.
+    Все квадратные, 600×600px+.
+    Замените src у каждого img.
+    ════════════════════════════════════════════
+    -->
+    <div class="insta-item reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=400&h=400&q=80&fit=crop" alt="">
+      <div class="insta-overlay"><span class="insta-plus">+</span></div>
+    </div>
+    <div class="insta-item reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=400&q=80&fit=crop" alt="">
+      <div class="insta-overlay"><span class="insta-plus">+</span></div>
+    </div>
+    <div class="insta-item reveal delay-3">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=400&q=80&fit=crop" alt="">
+      <div class="insta-overlay"><span class="insta-plus">+</span></div>
+    </div>
+    <div class="insta-item reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400&h=400&q=80&fit=crop" alt="">
+      <div class="insta-overlay"><span class="insta-plus">+</span></div>
+    </div>
+    <div class="insta-item reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1588453251771-cd919b362ed4?w=400&h=400&q=80&fit=crop" alt="">
+      <div class="insta-overlay"><span class="insta-plus">+</span></div>
+    </div>
+    <div class="insta-item reveal delay-3">
+      <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=400&q=80&fit=crop" alt="">
+      <div class="insta-overlay"><span class="insta-plus">+</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">not<em>JUST</em>LIPS</div>
+      <p class="footer-tagline">Aesthetic Injector Clinic by Olga Modlinska, RN · Upper East Side, Manhattan, New York</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank">IG</a>
+        <a href="https://www.facebook.com/modlinskalips/" target="_blank">FB</a>
+        <a href="tel:+16467659568">Tel</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="https://makeanappointment.online" target="_blank">Russian Lips</a>
+      <a href="https://makeanappointment.online" target="_blank">Classic Lip Augmentation</a>
+      <a href="https://makeanappointment.online" target="_blank">JawlineSculpt™</a>
+      <a href="https://makeanappointment.online" target="_blank">Fox Eyes</a>
+      <a href="https://makeanappointment.online" target="_blank">Botox</a>
+      <a href="https://makeanappointment.online" target="_blank">Full Face Balancing</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+16467659568">(646) 765-9568</a>
+      <a href="/cdn-cgi/l/email-protection#bad3d4dcd5fad4d5ced0cfc9ced6d3cac9d4dfcdc3d5c8d194d9d5d7"><span class="__cf_email__" data-cfemail="167f787079567879627c6365627a7f66657873616f79647d3875797b">[email&#160;protected]</span></a>
+      <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank">@modlinskalips.nyc</a>
+      <p style="margin-top:12px; color: rgba(250,246,241,0.3)">Booking Manager: Sasha</p>
+    </div>
+    <div class="footer-col">
+      <h4>Location</h4>
+      <p>144 East 74th Street, 2nd FL</p>
+      <p>New York, NY 10021</p>
+      <p style="margin-top:10px">By Appointment Only</p>
+      <p style="margin-top:10px; font-size:0.7rem; color:rgba(250,246,241,0.3)">
+        Nearby: 6 train (77 St)<br>Q train (72 St)
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 notJUSTLIPS Clinic · All rights reserved</span>
+    <span>Upper East Side · Manhattan, New York</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ─── CUSTOM CURSOR ─── */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX - 5 + 'px';
+  cursor.style.top  = mouseY - 5 + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX - 18) * 0.12;
+  ringY += (mouseY - ringY - 18) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top  = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'scale(2.5)';
+    ring.style.transform = 'scale(1.5)';
+    ring.style.borderColor = 'var(--rose)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'scale(1)';
+    ring.style.transform = 'scale(1)';
+  });
+});
+
+/* ─── NAV SCROLL ─── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ─── SCROLL REVEAL ─── */
+document.body.classList.add('js-loaded');
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+/* ─── COUNTER ANIMATION ─── */
+function animateCount(el) {
+  const target = el.textContent.replace(/\D/g, '');
+  const suffix = el.textContent.replace(/[0-9]/g, '');
+  if (!target) return;
+  let start = 0;
+  const end = parseInt(target);
+  const dur = 1400;
+  const step = dur / end;
+  const timer = setInterval(() => {
+    start++;
+    el.textContent = start + suffix;
+    if (start >= end) clearInterval(timer);
+  }, step);
+}
+
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const strong = entry.target.q
