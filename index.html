@@ -69,25 +69,26 @@ body {
    NAV
 ───────────────────────────────────────────── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  position: relative;
   display: flex; justify-content: space-between; align-items: center;
   padding: 20px 56px;
   background: rgba(250,246,241,0.85);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(197,164,106,0.2);
-  transition: padding 0.4s ease, box-shadow 0.4s ease;
+  transition: box-shadow 0.4s ease;
 }
-nav.scrolled { padding: 14px 56px; box-shadow: 0 4px 40px rgba(34,19,16,0.07); }
+nav.scrolled { box-shadow: none; }
 
 .nav-logo {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   text-decoration: none;
 }
 .nav-logo img {
   display: block;
-  width: 230px;
-  max-width: 42vw;
+  width: 252px;
+  max-width: 44vw;
   height: auto;
 }
 
@@ -120,7 +121,7 @@ nav.scrolled { padding: 14px 56px; box-shadow: 0 4px 40px rgba(34,19,16,0.07); }
 /* HERO LEFT */
 .hero-left {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 160px 72px 80px 80px;
+  padding: 108px 72px 80px 80px;
   position: relative; z-index: 2;
 }
 
@@ -580,7 +581,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 }
 .footer-logo img {
   display: block;
-  width: 240px;
+  width: 228px;
   max-width: 100%;
   height: auto;
 }
@@ -647,15 +648,15 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
    RESPONSIVE
 ───────────────────────────────────────────── */
 @media (max-width: 960px) {
-  nav { top: 0; padding: 16px 24px; }
+  nav { padding: 16px 24px; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; }
   .hero-right { height: 60vw; }
-  .hero-left { padding: 120px 28px 60px; }
+  .hero-left { padding: 72px 28px 60px; }
   .hero-title { font-size: 3.2rem; }
   .hero-float-card { left: 20px; bottom: 20px; }
-  .nav-logo img { width: 170px; max-width: 48vw; }
-  .footer-logo img { width: 190px; }
+  .nav-logo img { width: 188px; max-width: 58vw; }
+  .footer-logo img { width: 184px; }
   .services-section, .gallery-section, .testimonials-section,
   .cta-section, .insta-section { padding: 72px 28px; }
   .services-grid, .testimonials-grid, .process-grid { grid-template-columns: 1fr; }
@@ -683,7 +684,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 <!-- ─── NAV ─── -->
 <nav id="navbar">
   <a href="#" class="nav-logo" aria-label="notJUSTLIPS New York">
-    <img src="./logoNJL.PNG" alt="notJUSTLIPS New York">
+    <img src="./logoNJL-wordmark.png" alt="notJUSTLIPS New York">
   </a>
   <div class="nav-links">
     <a href="#services">Services</a>
@@ -1117,7 +1118,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">
-        <img src="./logoNJL.PNG" alt="notJUSTLIPS New York">
+        <img src="./logoNJL-wordmark.png" alt="notJUSTLIPS New York">
       </div>
       <p class="footer-tagline">Aesthetic injector clinic led by Olga Modlinska, RN, specializing in lip enhancement, facial balancing, and refined non-surgical treatments in Manhattan.</p>
       <div class="footer-social">
@@ -1192,12 +1193,6 @@ document.querySelectorAll('a, button').forEach(el => {
     cursor.style.transform = 'scale(1)';
     ring.style.transform = 'scale(1)';
   });
-});
-
-/* ─── NAV SCROLL ─── */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
 
 /* ─── SCROLL REVEAL ─── */
