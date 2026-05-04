@@ -1273,6 +1273,250 @@ const statObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.stat, .trust-item').forEach(el => statObserver.observe(el));
 </script>
 
+
+<!-- ═══════════════════════════════════════════
+     POPUP — 5% DISCOUNT
+══════════════════════════════════════════════ -->
+<div id="popupOverlay" style="
+  position: fixed; inset: 0; z-index: 8000;
+  background: rgba(34,19,16,0.6);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  padding: 20px;
+">
+  <div id="popupBox" style="
+    background: var(--cream);
+    max-width: 480px; width: 100%;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(24px);
+    transition: transform 0.5s ease;
+  ">
+
+    <!-- Декоративная полоса сверху -->
+    <div style="height: 3px; background: linear-gradient(90deg, var(--rose), var(--gold));"></div>
+
+    <!-- Крестик -->
+    <button onclick="closePopup()" style="
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.2rem; color: var(--muted);
+      line-height: 1; padding: 4px;
+      transition: color 0.2s;
+    " onmouseover="this.style.color='var(--deep)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+
+    <div style="padding: 48px 48px 40px;">
+
+      <!-- Eyebrow -->
+      <p style="
+        font-size: 0.58rem; letter-spacing: 0.38em; text-transform: uppercase;
+        color: var(--rose); margin-bottom: 16px;
+      ">Exclusive offer</p>
+
+      <!-- Title -->
+      <h2 style="
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2.2rem; font-weight: 300; line-height: 1.1;
+        color: var(--deep); margin-bottom: 12px;
+      ">5% off your <em style="font-style:italic; color:var(--rose);">first treatment</em></h2>
+
+      <p style="
+        font-size: 0.76rem; line-height: 1.9; color: var(--muted);
+        margin-bottom: 32px;
+      ">Leave your details and we'll send your personal discount code straight to your inbox.</p>
+
+      <!-- Form -->
+      <div id="popupForm">
+        <div style="margin-bottom: 14px;">
+          <input type="text" id="popupName" placeholder="Full name"
+            oninput="clearError('popupName')"
+            style="
+              width: 100%; padding: 13px 16px;
+              border: 1px solid rgba(197,164,106,0.3); background: #fff;
+              font-family: inherit; font-size: 0.78rem; color: var(--deep);
+              outline: none; transition: border 0.25s;
+            "
+            onfocus="this.style.borderColor='var(--rose)'"
+            onblur="this.style.borderColor='rgba(197,164,106,0.3)'">
+          <p id="errName" style="font-size:0.62rem; color:var(--rose); margin-top:4px; display:none;">Please enter your name</p>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <input type="tel" id="popupPhone" placeholder="Phone number (e.g. +1 212 555 0100)"
+            oninput="clearError('popupPhone')"
+            style="
+              width: 100%; padding: 13px 16px;
+              border: 1px solid rgba(197,164,106,0.3); background: #fff;
+              font-family: inherit; font-size: 0.78rem; color: var(--deep);
+              outline: none; transition: border 0.25s;
+            "
+            onfocus="this.style.borderColor='var(--rose)'"
+            onblur="this.style.borderColor='rgba(197,164,106,0.3)'">
+          <p id="errPhone" style="font-size:0.62rem; color:var(--rose); margin-top:4px; display:none;">Please enter a valid phone number</p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <input type="email" id="popupEmail" placeholder="Email address"
+            oninput="clearError('popupEmail')"
+            style="
+              width: 100%; padding: 13px 16px;
+              border: 1px solid rgba(197,164,106,0.3); background: #fff;
+              font-family: inherit; font-size: 0.78rem; color: var(--deep);
+              outline: none; transition: border 0.25s;
+            "
+            onfocus="this.style.borderColor='var(--rose)'"
+            onblur="this.style.borderColor='rgba(197,164,106,0.3)'">
+          <p id="errEmail" style="font-size:0.62rem; color:var(--rose); margin-top:4px; display:none;">Please enter a valid email address</p>
+        </div>
+
+        <!-- Checkboxes -->
+        <div style="margin-bottom: 10px; display:flex; gap:10px; align-items:flex-start;">
+          <input type="checkbox" id="checkConsent" style="margin-top:3px; accent-color:var(--rose); flex-shrink:0;">
+          <label for="checkConsent" style="font-size:0.68rem; line-height:1.7; color:var(--muted); cursor:pointer;">
+            I consent to the collection and processing of my personal data in accordance with the
+            <a href="privacy.html" target="_blank" style="color:var(--rose); text-decoration:none;">Privacy Policy</a>
+            of notJUSTLIPS New York.
+          </label>
+        </div>
+        <p id="errConsent" style="font-size:0.62rem; color:var(--rose); margin-bottom:8px; display:none;">Please agree to continue</p>
+
+        <div style="margin-bottom: 24px; display:flex; gap:10px; align-items:flex-start;">
+          <input type="checkbox" id="checkEmail" style="margin-top:3px; accent-color:var(--rose); flex-shrink:0;">
+          <label for="checkEmail" style="font-size:0.68rem; line-height:1.7; color:var(--muted); cursor:pointer;">
+            I agree to receive promotional emails from notJUSTLIPS New York. You can unsubscribe at any time.
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <button onclick="submitPopup()" style="
+          width: 100%; padding: 16px;
+          background: var(--rose); color: #fff; border: none; cursor: pointer;
+          font-family: inherit; font-size: 0.65rem;
+          letter-spacing: 0.25em; text-transform: uppercase;
+          transition: background 0.3s ease;
+        " onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--rose)'">
+          Get my 5% off
+        </button>
+
+        <p style="font-size:0.6rem; color:rgba(123,85,72,0.5); text-align:center; margin-top:14px; line-height:1.6;">
+          Valid for first-time clients only. One use per person. Cannot be combined with other offers.
+        </p>
+      </div>
+
+      <!-- Success message -->
+      <div id="popupSuccess" style="display:none; text-align:center; padding: 20px 0;">
+        <div style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.8rem; font-weight: 300; color: var(--rose);
+          margin-bottom: 16px;
+        ">✦</div>
+        <h3 style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.6rem; font-weight: 300; color: var(--deep);
+          margin-bottom: 12px;
+        ">Your discount is on its way.</h3>
+        <p style="font-size:0.76rem; line-height:1.9; color:var(--muted);">
+          Check your inbox — your personal 5% off code is waiting for you.<br>
+          We look forward to welcoming you to notJUSTLIPS.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Show popup after 4 seconds, only once per session
+function openPopup() {
+  var overlay = document.getElementById('popupOverlay');
+  var box = document.getElementById('popupBox');
+  overlay.style.visibility = 'visible';
+  overlay.style.opacity = '1';
+  box.style.transform = 'translateY(0)';
+}
+
+function closePopup() {
+  var overlay = document.getElementById('popupOverlay');
+  var box = document.getElementById('popupBox');
+  overlay.style.opacity = '0';
+  overlay.style.visibility = 'hidden';
+  box.style.transform = 'translateY(24px)';
+  try { sessionStorage.setItem('njl_popup_shown', '1'); } catch(e) {}
+}
+
+// Close on overlay click
+document.getElementById('popupOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePopup();
+});
+
+function clearError(id) {
+  var field = document.getElementById(id);
+  var err = document.getElementById('err' + id.replace('popup',''));
+  if (field) field.style.borderColor = 'rgba(197,164,106,0.3)';
+  if (err) err.style.display = 'none';
+}
+
+function submitPopup() {
+  var name = document.getElementById('popupName').value.trim();
+  var phone = document.getElementById('popupPhone').value.trim();
+  var email = document.getElementById('popupEmail').value.trim();
+  var consent = document.getElementById('checkConsent').checked;
+  var valid = true;
+
+  // Name
+  if (!name) {
+    document.getElementById('errName').style.display = 'block';
+    document.getElementById('popupName').style.borderColor = 'var(--rose)';
+    valid = false;
+  }
+  // Phone — must have at least 7 digits
+  if (!phone || phone.replace(/\D/g,'').length < 7) {
+    document.getElementById('errPhone').style.display = 'block';
+    document.getElementById('popupPhone').style.borderColor = 'var(--rose)';
+    valid = false;
+  }
+  // Email
+  var emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailReg.test(email)) {
+    document.getElementById('errEmail').style.display = 'block';
+    document.getElementById('popupEmail').style.borderColor = 'var(--rose)';
+    valid = false;
+  }
+  // Consent
+  if (!consent) {
+    document.getElementById('errConsent').style.display = 'block';
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  // Show success
+  document.getElementById('popupForm').style.display = 'none';
+  document.getElementById('popupSuccess').style.display = 'block';
+  try { localStorage.setItem('njl_popup_submitted', '1'); } catch(e) {}
+
+  // Auto close after 4 seconds
+  setTimeout(closePopup, 4000);
+}
+
+// Trigger popup
+window.addEventListener('load', function() {
+  var shown = false;
+  try { shown = sessionStorage.getItem('njl_popup_shown') || localStorage.getItem('njl_popup_submitted'); } catch(e) {}
+  if (!shown) {
+    setTimeout(openPopup, 4000);
+  }
+});
+</script>
+
+
 <!-- COOKIE BANNER -->
 <div id="cookieBanner" style="
   position:fixed; bottom:0; left:0; right:0; z-index:9000;
