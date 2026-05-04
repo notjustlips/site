@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy · notJUSTLIPS New York</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Didact+Gothic&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #FAF6F1; --blush: #EDD5C5; --rose: #C07A5C;
+  --deep: #221310; --gold: #C5A46A; --muted: #7B5548; --light: #F3ECE5;
+}
+body { background: var(--cream); color: var(--deep); font-family: 'Didact Gothic', sans-serif; }
+
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 56px;
+  background: rgba(250,246,241,0.95); backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(197,164,106,0.2);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-logo { text-decoration: none; display: flex; align-items: baseline; }
+.logo-not { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; color: var(--gold); font-size: 1.25rem; }
+.logo-just, .logo-lips { font-family: 'Cormorant Garamond', serif; font-weight: 500; letter-spacing: 0.18em; color: var(--deep); font-size: 1.1rem; text-transform: uppercase; }
+.nav-back {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.25s;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-back:hover { color: var(--rose); }
+.nav-back::before { content: '←'; font-size: 0.9rem; }
+
+.page-hero {
+  padding: 80px 56px 56px; text-align: center;
+  border-bottom: 1px solid rgba(197,164,106,0.15);
+}
+.page-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--rose); margin-bottom: 20px;
+}
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 300;
+  color: var(--deep); margin-bottom: 16px;
+}
+.page-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+
+.privacy-content {
+  max-width: 760px; margin: 0 auto;
+  padding: 72px 56px 100px;
+}
+
+.privacy-intro {
+  font-size: 0.85rem; line-height: 2; color: var(--muted);
+  margin-bottom: 56px; padding-bottom: 40px;
+  border-bottom: 1px solid rgba(197,164,106,0.15);
+}
+
+.privacy-section { margin-bottom: 48px; }
+
+.privacy-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400; color: var(--deep);
+  margin-bottom: 18px; padding-bottom: 12px;
+  border-bottom: 1px solid rgba(197,164,106,0.2);
+}
+
+.privacy-section p {
+  font-size: 0.8rem; line-height: 2; color: var(--muted); margin-bottom: 12px;
+}
+
+.privacy-section ul {
+  list-style: none; margin: 8px 0 16px;
+}
+.privacy-section ul li {
+  font-size: 0.8rem; line-height: 1.9; color: var(--muted);
+  padding: 6px 0 6px 20px; position: relative;
+  border-bottom: 1px solid rgba(197,164,106,0.08);
+}
+.privacy-section ul li::before {
+  content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem;
+}
+
+.privacy-section a { color: var(--rose); text-decoration: none; }
+
+.privacy-highlight {
+  background: var(--light); border-left: 3px solid var(--rose);
+  padding: 20px 28px; margin: 20px 0;
+  font-size: 0.8rem; line-height: 1.9; color: var(--muted);
+}
+
+.sms-section {
+  background: var(--deep); padding: 72px 56px; margin-top: 0;
+}
+.sms-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300; color: var(--cream);
+  margin-bottom: 40px;
+}
+.sms-section .privacy-section h2 {
+  color: var(--blush); border-bottom-color: rgba(197,164,106,0.2);
+}
+.sms-section .privacy-section p,
+.sms-section .privacy-section ul li { color: rgba(250,246,241,0.6); }
+.sms-section .privacy-section ul li::before { color: var(--gold); }
+.sms-section .privacy-section ul li { border-bottom-color: rgba(197,164,106,0.1); }
+
+.contact-box {
+  background: #fff; border: 1px solid rgba(197,164,106,0.25);
+  padding: 40px 48px; text-align: center; margin-top: 56px;
+}
+.contact-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 300; color: var(--deep); margin-bottom: 20px;
+}
+.contact-box p { font-size: 0.8rem; line-height: 2; color: var(--muted); }
+.contact-box a { color: var(--rose); text-decoration: none; }
+.contact-box strong { color: var(--deep); }
+
+footer {
+  background: var(--deep); padding: 40px 56px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+footer span { font-size: 0.65rem; color: rgba(250,246,241,0.3); letter-spacing: 0.08em; }
+footer a { color: rgba(250,246,241,0.3); text-decoration: none; font-size: 0.65rem; letter-spacing: 0.08em; transition: color 0.25s; }
+footer a:hover { color: var(--blush); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .page-hero { padding: 60px 24px 40px; }
+  .privacy-content { padding: 48px 24px 72px; }
+  .sms-section { padding: 56px 24px; }
+  footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="logo-not">not</span><span class="logo-just">JUST</span><span class="logo-lips">LIPS</span>
+  </a>
+  <a href="index.html" class="nav-back">Back to site</a>
+</nav>
+
+<div class="page-hero">
+  <p class="page-eyebrow">Legal</p>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="page-meta">Effective Date: January 15, 2025 · Last Updated: February 8, 2025</p>
+</div>
+
+<div class="privacy-content">
+  <p class="privacy-intro">
+    Modlinska Lips Inc. dba notJUSTLIPS New York ("we," "us," or "our") is committed to safeguarding the privacy and security of our clients' personal and medical information. This Privacy Policy outlines how we collect, use, and protect your information when you engage with our services or visit our website.<br><br>
+    <strong>We will never disclose any personal information such as phone numbers and SMS consent with any third parties for marketing purposes.</strong>
+  </p>
+
+  <div class="privacy-section">
+    <h2>1. Information We Collect</h2>
+    <p><strong>Personal Information:</strong></p>
+    <ul>
+      <li>Name, address, phone number, email address, and date of birth</li>
+      <li>Payment information for transactions</li>
+    </ul>
+    <p><strong>Medical Information:</strong></p>
+    <ul>
+      <li>Medical history, skin conditions, allergies, and treatment records necessary for providing our services</li>
+    </ul>
+    <p><strong>Technical Information:</strong></p>
+    <ul>
+      <li>IP address, browser type, and usage data when you visit our website</li>
+    </ul>
+  </div>
+
+  <div class="privacy-section">
+    <h2>2. How We Use Your Information</h2>
+    <ul>
+      <li>Provide personalized medical spa services</li>
+      <li>Maintain accurate medical records for your treatments</li>
+      <li>Communicate appointment confirmations, follow-ups, and promotional offers (if opted in)</li>
+      <li>Process payments and manage transactions securely</li>
+      <li>Comply with applicable laws and regulations</li>
+    </ul>
+  </div>
+
+  <div class="privacy-section">
+    <h2>3. Sharing and Disclosure of Information</h2>
+    <p>We do not sell, rent, or share your personal information except under the following circumstances:</p>
+    <ul>
+      <li><strong>Service Providers:</strong> Third parties who assist in providing services (e.g., medical professionals, payment processors), bound by confidentiality agreements</li>
+      <li><strong>Legal Requirements:</strong> When required to comply with legal obligations, court orders, or government regulations</li>
+      <li><strong>Business Transactions:</strong> In the event of a merger, acquisition, or sale of assets</li>
+    </ul>
+  </div>
+
+  <div class="privacy-section">
+    <h2>4. Data Security</h2>
+    <p>We implement industry-standard security measures, including encryption, secure servers, and restricted access, to protect your personal and medical information from unauthorized access, disclosure, or misuse.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>5. Your Rights</h2>
+    <ul>
+      <li>Access and review the information we hold about you</li>
+      <li>Update or correct your personal information</li>
+      <li>Request the deletion of your data, subject to legal and regulatory requirements</li>
+      <li>Withdraw consent for marketing communications at any time</li>
+    </ul>
+  </div>
+
+  <div class="privacy-section">
+    <h2>6. Retention of Information</h2>
+    <p>We retain your information only as long as necessary to fulfill the purposes outlined in this Privacy Policy or to comply with legal obligations.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>7. Cookies and Website Tracking</h2>
+    <p>Our website may use cookies to enhance your experience and analyze website usage. You can disable cookies through your browser settings, but this may affect website functionality.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>8. Third-Party Links</h2>
+    <p>Our website may include links to third-party websites. We are not responsible for the privacy practices or content of these external sites.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>9. Updates to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy periodically. Any changes will be posted on our website with the updated effective date.</p>
+  </div>
+
+  <div class="contact-box">
+    <h3>Contact Us</h3>
+    <p>
+      <strong>Modlinska Lips Inc. dba notJUSTLIPS New York</strong><br>
+      144 East 74th Street, New York, NY 10021<br>
+      <a href="mailto:info@notjustlipsnewyork.com">info@notjustlipsnewyork.com</a><br>
+      <a href="tel:+16467659568">(646) 765-9568</a>
+    </p>
+  </div>
+</div>
+
+<!-- SMS TERMS -->
+<div class="sms-section">
+  <div style="max-width:760px; margin: 0 auto;">
+    <h2>SMS Terms &amp; Conditions</h2>
+
+    <div class="privacy-section">
+      <h2>1. SMS Consent Communication</h2>
+      <p>The information (phone numbers) obtained as part of the SMS consent process will not be shared with third parties for marketing purposes.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>2. Types of SMS Communications</h2>
+      <p>If you have consented to receive text messages from notJUSTLIPS New York, you may receive:</p>
+      <ul>
+        <li>Appointment reminders</li>
+        <li>Follow-up messages</li>
+        <li>Billing inquiries</li>
+        <li>Promotions or offers (if applicable)</li>
+      </ul>
+      <div class="privacy-highlight" style="background:rgba(250,246,241,0.05); border-left-color: var(--gold);">
+        Example: "Hello, this is a friendly reminder of your upcoming appointment at notJUSTLIPS New York on [Date] at [Time]. Reply STOP to opt out."
+      </div>
+    </div>
+
+    <div class="privacy-section">
+      <h2>3. Message Frequency</h2>
+      <p>Message frequency may vary. You may receive up to 2 SMS messages per week related to your appointments.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>4. Potential Fees</h2>
+      <p>Standard message and data rates may apply depending on your carrier's pricing plan.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>5. Opt-In Method</h2>
+      <ul>
+        <li>Verbally, during a conversation</li>
+        <li>By submitting an online form</li>
+        <li>By filling out a paper form</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h2>6. Opt-Out Method</h2>
+      <p>Reply <strong style="color:var(--blush);">STOP</strong> to any SMS at any time. You can also contact us directly to request removal from our messaging list.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>7. Help</h2>
+      <p>Reply <strong style="color:var(--blush);">HELP</strong> to any message or contact us at <a href="https://schedulenow.online/" style="color:var(--gold);">schedulenow.online</a></p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>8. Standard Disclosures</h2>
+      <ul>
+        <li>Message and data rates may apply</li>
+        <li>Opt out at any time by texting "STOP"</li>
+        <li>For assistance, text "HELP"</li>
+        <li>Message frequency may vary</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 notJUSTLIPS New York · Modlinska Lips Inc.</span>
+  <div style="display:flex; gap:24px;">
+    <a href="index.html">Home</a>
+    <a href="booking.html">Book Appointment</a>
+    <a href="https://www.instagram.com/notjustlipsnewyork/" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>
