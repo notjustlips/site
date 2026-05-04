@@ -205,10 +205,10 @@ footer .logo-lips { color: var(--cream); }
    ════════════════════════════════════════════ */
 .hero-img {
   width: 100%; height: 100%;
-  object-fit: cover; display: block;
+  object-fit: cover; object-position: right center; display: block;
   transform: scale(1.05);
   animation: heroZoom 8s ease forwards;
-  filter: brightness(0.93) saturate(0.88);
+  filter: brightness(0.96) saturate(0.95);
 }
 
 .hero-overlay {
@@ -306,6 +306,12 @@ footer .logo-lips { color: var(--cream); }
 }
 
 .about-img-side { position: relative; overflow: hidden; }
+.about-video-wrap { position: relative; width: 100%; height: 100%; min-height: 500px; background: var(--deep); }
+.about-video {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none; display: block;
+}
 
 /* ════════════════════════════════════════════
    📸 ФОТО #2 — OLGA PORTRAIT
@@ -314,8 +320,8 @@ footer .logo-lips { color: var(--cream); }
    нейтральный или светлый фон.
    ════════════════════════════════════════════ */
 .about-img-side img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  opacity: 0.72; filter: sepia(0.15) brightness(0.95);
+  width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+  opacity: 0.82; filter: sepia(0.05) brightness(0.92);
   transition: transform 0.8s ease;
 }
 .about-img-side:hover img { transform: scale(1.04); }
@@ -456,7 +462,7 @@ footer .logo-lips { color: var(--cream); }
 .fillers-img-wrap { position: relative; }
 .fillers-img-wrap img {
   width: 100%; display: block; object-fit: cover; object-position: center center;
-  height: 460px; opacity: 0.88; filter: sepia(0.05);
+  height: 460px; opacity: 1; filter: none;
   transition: transform 0.6s ease;
 }
 .fillers-img-wrap:hover img { transform: scale(1.03); }
@@ -543,6 +549,27 @@ footer .logo-lips { color: var(--cream); }
    INSTAGRAM STRIP
 ───────────────────────────────────────────── */
 .insta-section { padding: 100px 80px; background: var(--light); }
+.insta-feed-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.insta-feed-iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  display: block;
+  border-radius: 0;
+  filter: saturate(0.9);
+}
+.insta-feed-overlay {
+  text-align: center;
+  margin-top: 32px;
+}
+@media (max-width: 960px) {
+  .insta-feed-iframe { height: 480px; }
+}
 .insta-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
 .insta-handle {
   font-family: 'Cormorant Garamond', serif;
@@ -649,6 +676,21 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   to   { transform: rotate(360deg); }
 }
 
+/* ─── PRINCIPLES ─── */
+.about-principles {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px;
+}
+.principle {
+  font-size: 0.75rem; letter-spacing: 0.12em;
+  color: rgba(250,246,241,0.55);
+  padding: 10px 0; border-bottom: 1px solid rgba(197,164,106,0.12);
+  position: relative; padding-left: 16px;
+}
+.principle::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--gold); font-size: 0.7rem;
+}
+
 /* ─── DECORATIVE CIRCLES ─── */
 .deco-circle {
   position: absolute; border-radius: 50%;
@@ -662,7 +704,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   nav { padding: 16px 24px; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; }
-  .hero-right { height: 60vw; }
+  .hero-right { height: 70vw; }
+  .hero-img { object-position: 70% center; }
   .hero-left { padding: 120px 28px 60px; }
   .hero-title { font-size: 3.2rem; }
   .hero-float-card { left: 20px; bottom: 20px; }
@@ -707,14 +750,14 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 ══════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">Upper East Side · New York City</p>
+    <p class="hero-eyebrow">Aesthetic clinic focused on technique · Upper East Side, NYC</p>
     <h1 class="hero-title">
-      <span class="line"><span>Not just</span></span>
-      <span class="line"><span><em>beautiful</em></span></span>
-      <span class="line"><span>lips.</span></span>
+      <span class="line"><span>Your best lips</span></span>
+      <span class="line"><span>start with the</span></span>
+      <span class="line"><span><em>right approach.</em></span></span>
     </h1>
     <p class="hero-sub">
-      notJUSTLIPS Clinic · Russian Lips, Facial Balancing &amp; Botox by Olga Modlinska, RN — trained in the USA &amp; Europe. No filters, no photoshop. Real results.
+      Natural, structured results. Signature method by Olga Modlinska, RN &amp; NP injectors — lip filler &amp; facial balancing.
     </p>
     <div class="hero-ctas">
       <a href="https://makeanappointment.online" target="_blank" class="btn btn-fill">Book Appointment</a>
@@ -722,12 +765,12 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     </div>
     <div class="hero-trust">
       <div class="trust-item reveal delay-1">
-        <strong>5+</strong>
+        <strong>7+</strong>
         <span>Years<br>experience</span>
       </div>
       <div class="trust-item reveal delay-2">
-        <strong>50K</strong>
-        <span>Instagram<br>followers</span>
+        <strong>100K+</strong>
+        <span>Instagram<br>community</span>
       </div>
       <div class="trust-item reveal delay-3">
         <strong>100%</strong>
@@ -747,12 +790,12 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <img class="hero-img"
-      src="IMG_5539.JPG"
-      alt="Beautiful lips result · notJUSTLIPS NYC">
+      src="olga_hero.png"
+      alt="Olga Modlinska · notJUSTLIPS New York" style="object-position: right center;">
     <div class="hero-overlay"></div>
     <div class="hero-float-card reveal delay-4">
-      <p>"My lips finally look like me — but better."</p>
-      <span>★★★★★ · Client, Manhattan</span>
+      <p>"My work is my soul. I pursue it for love of what I do."</p>
+      <span>Olga Modlinska · Founder</span>
     </div>
   </div>
 </section>
@@ -794,7 +837,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="section-header">
     <p class="section-label reveal">What we offer</p>
     <h2 class="section-title reveal delay-1">
-      Every treatment,<br>crafted for <em>you</em>
+      Treatments built around<br>your <em>anatomy.</em>
     </h2>
   </div>
   <div class="services-grid">
@@ -804,23 +847,23 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       
       <div class="service-name">Russian Lips</div>
       <p class="service-desc">Maximum vertical height &amp; natural volume with one syringe. Our signature technique avoids migration and "duck lips" — just a defined, beautiful pout lasting 7–15 months.</p>
-      <span class="service-tag">Signature Treatment</span>
+      <span class="service-tag">Developed In-House</span>
     </div>
 
     <div class="service-card reveal delay-2">
       <div class="service-num">02</div>
       
       <div class="service-name">Classic Lip Augmentation</div>
-      <p class="service-desc">Natural volume and definition tailored to your unique lip shape. Using RHA Collection and Revanesse Versa — FDA-approved, long-lasting, dissolvable.</p>
-      <span class="service-tag">FDA-Approved Fillers</span>
+      <p class="service-desc">Volume and definition tailored to your lip structure. We focus on shape, not just size — using RHA Collection and Revanesse Versa, FDA-approved and dissolvable.</p>
+      <span class="service-tag">Structure-First Approach</span>
     </div>
 
     <div class="service-card reveal delay-3">
       <div class="service-num">03</div>
       
-      <div class="service-name">Signature JawlineSculpt™</div>
-      <p class="service-desc">One-of-a-kind jawline correction technique combining multiple methods to create definition and restore missing volume. Results last 1–2 years.</p>
-      <span class="service-tag">Exclusive Technique</span>
+      <div class="service-name">JawlineSculpt™</div>
+      <p class="service-desc">A multi-method jawline correction approach — combining techniques to create definition and restore volume where it matters. Results last 1–2 years.</p>
+      <span class="service-tag">Multi-Method Approach</span>
     </div>
 
     <div class="service-card reveal delay-1">
@@ -862,35 +905,55 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="about-img-side reveal-left">
     <!--
     ════════════════════════════════════════════
-    📸 ФОТО #2 — ПОРТРЕТ ОЛЬГИ
-    Вставьте профессиональное фото Ольги Модлинской.
-    Рекомендации: нейтральный фон, хорошее освещение,
-    полупрофиль или прямо, 700×900px+
+    🎥 ВИДЕО ОБ ОЛЬГЕ
+    Замените VIDEO_ID на ID вашего видео с YouTube или Vimeo.
+    Пример YouTube: src="https://www.youtube.com/embed/VIDEO_ID"
+    Пример Vimeo:   src="https://player.vimeo.com/video/VIDEO_ID"
+    Если видео нет — раскомментируйте img ниже и закомментируйте video-wrap.
     ════════════════════════════════════════════
     -->
-    <img src="IMG_5537.JPG"
-      alt="Olga Modlinska, RN · Founder notJUSTLIPS">
-    <div class="about-img-label">Olga Modlinska, RN</div>
+    <div class="about-video-wrap">
+      <iframe
+        class="about-video"
+        src="https://www.instagram.com/reel/DX6gpfMokdX/embed/?cr=1&v=14&rd=https://notjustlipsnewyork.com"
+        title="Olga Modlinska · notJUSTLIPS New York"
+        frameborder="0"
+        scrolling="no"
+        allowtransparency="true"
+        allowfullscreen>
+      </iframe>
+      <div class="about-img-label">Olga Modlinska, RN · Founder</div>
+    </div>
+    <!-- Fallback фото если нет видео:
+    <img src="IMG_4606.PNG" alt="Olga Modlinska, RN · Founder notJUSTLIPS">
+    <div class="about-img-label">Olga Modlinska, RN · Founder</div>
+    -->
   </div>
 
   <div class="about-text">
     <p class="section-label reveal">Our Founder</p>
     <h2 class="section-title reveal delay-1">
-      European precision,<br><em>NYC</em> artistry
+      Signature method.<br><em>Real results.</em>
     </h2>
     <p class="about-para reveal delay-2">
-      Olga Modlinska, RN, is an internationally certified aesthetic nurse injector trained by top doctors in the USA, Russia, Turkey, and Europe. She attends international trainings regularly to stay at the forefront of techniques and protocols.
+      Olga Modlinska, RN, is an internationally certified aesthetic nurse injector, trained by top doctors in the USA, Russia, Turkey and Europe. She began her career in 2019 and regularly attends international trainings to stay current with the most advanced protocols and techniques.
     </p>
     <p class="about-para reveal delay-2">
-      She founded notJUSTLIPS with a vision of holistic beauty — combining advanced European methods with a deeply personalized approach. Every injector at the clinic has 5+ years of experience.
+      She founded notJUSTLIPS around one principle: results should be consistent, not accidental. The clinic's signature method ensures every injector — RN or NP — works with the same approach, the same standards, and the same eye for natural, structured outcomes.
     </p>
+    <div class="about-principles reveal delay-3">
+      <div class="principle">Focused on technique, not trends</div>
+      <div class="principle">Natural, structured results — not overcorrection</div>
+      <div class="principle">RN &amp; NP injectors trained in the same method</div>
+      <div class="principle">Every outcome built around your anatomy</div>
+    </div>
     <div class="about-stats">
       <div class="stat reveal delay-2">
-        <strong>5+</strong>
+        <strong>7+</strong>
         <span>Years<br>injecting</span>
       </div>
       <div class="stat reveal delay-3">
-        <strong>50K</strong>
+        <strong>100K+</strong>
         <span>Instagram<br>community</span>
       </div>
       <div class="stat reveal delay-4">
@@ -898,7 +961,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
         <span>Years<br>results last</span>
       </div>
     </div>
-    <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank" class="btn btn-light reveal delay-3">Follow on Instagram</a>
+    <a href="https://www.instagram.com/notjustlipsnewyork/" target="_blank" class="btn btn-light reveal delay-3">Follow on Instagram</a>
   </div>
 </div>
 
@@ -907,7 +970,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 ══════════════════════════════════════════════ -->
 <section class="process-section">
   <p class="section-label reveal">How it works</p>
-  <h2 class="section-title reveal delay-1">Three steps to <em>your best look</em></h2>
+  <h2 class="section-title reveal delay-1">How we <em>work</em></h2>
   <div class="process-grid">
     <div class="process-step reveal delay-1">
       <div class="process-step-num">1</div>
@@ -940,7 +1003,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       <h2 class="section-title reveal delay-1">No filters.<br><em>No photoshop.</em></h2>
     </div>
     <p class="gallery-note reveal delay-2">
-      All results shown are with initial swelling, which reduces 30–40% leaving a natural, beautiful result.
+      Real results. No filters, no editing. Every outcome reflects the same method — consistent, natural, structured.
     </p>
   </div>
 
@@ -953,8 +1016,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <div class="gallery-item gallery-item--big reveal-left">
-      <img src="IMG_5532.JPG" alt="Jawline Correction · Before &amp; After">
-      <div class="gallery-overlay"><span>Jawline Correction · Before &amp; After</span></div>
+      <img src="IMG_4601.PNG" alt="notJUSTLIPS Clinic · Upper East Side">
+      <div class="gallery-overlay"><span>notJUSTLIPS · Upper East Side NYC</span></div>
     </div>
 
     <!--
@@ -962,8 +1025,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Результат или процедура. 500×350px+
     -->
     <div class="gallery-item reveal delay-1">
-      <img src="IMG_5533.JPG" alt="Jawline · Before &amp; After">
-      <div class="gallery-overlay"><span>Classic Augmentation</span></div>
+      <img src="IMG_4617.JPG" alt="Lip Augmentation · Before &amp; After">
+      <div class="gallery-overlay"><span>Lip Augmentation · Before &amp; After</span></div>
     </div>
 
     <!--
@@ -971,8 +1034,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Интерьер клиники или атмосфера. 500×350px+
     -->
     <div class="gallery-item reveal delay-2">
-      <img src="IMG_5537.JPG" alt="Full Face Balancing · Before &amp; After">
-      <div class="gallery-overlay"><span>Our Clinic · UES</span></div>
+      <img src="IMG_4635.JPG" alt="Russian Lips · Before &amp; After">
+      <div class="gallery-overlay"><span>Russian Lips · Before &amp; After</span></div>
     </div>
 
     <!--
@@ -980,8 +1043,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Jawline или лицо. 500×350px+
     -->
     <div class="gallery-item reveal delay-1">
-      <img src="IMG_5538.JPG" alt="Lip Augmentation · Before &amp; After">
-      <div class="gallery-overlay"><span>JawlineSculpt™</span></div>
+      <img src="IMG_4639.JPG" alt="Lip Filler · Before &amp; After">
+      <div class="gallery-overlay"><span>Lip Filler · Before &amp; After</span></div>
     </div>
 
     <!--
@@ -989,8 +1052,8 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Ещё один результат. 500×350px+
     -->
     <div class="gallery-item reveal delay-2">
-      <img src="IMG_5540.JPG" alt="Russian Lips · Before &amp; After">
-      <div class="gallery-overlay"><span>Facial Balancing</span></div>
+      <img src="IMG_4648.JPG" alt="Classic Augmentation · Before &amp; After">
+      <div class="gallery-overlay"><span>Classic Augmentation · Before &amp; After</span></div>
     </div>
   </div>
 </section>
@@ -1023,7 +1086,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     Горизонтальное, 700×460px+
     ════════════════════════════════════════════
     -->
-    <img src="IMG_5291.PNG" alt="FDA-approved dermal fillers">
+    <img src="IMG_4598.PNG" alt="notJUSTLIPS Clinic interior">
   </div>
 </section>
 
@@ -1032,7 +1095,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 ══════════════════════════════════════════════ -->
 <section class="testimonials-section" id="reviews">
   <p class="section-label reveal">Client Stories</p>
-  <h2 class="section-title reveal delay-1">What our clients<br><em>are saying</em></h2>
+  <h2 class="section-title reveal delay-1">Why clients<br><em>come back</em></h2>
   <div class="testimonials-grid">
     <div class="testimonial-card reveal delay-1">
       <div class="testimonial-stars">★★★★★</div>
@@ -1059,9 +1122,9 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
   <div class="cta-text">
     <p class="cta-eyebrow reveal">✦ By Appointment Only</p>
     <h2 class="cta-title reveal delay-1">
-      Ready for your<br><em>most beautiful</em> self?
+      Ready for results built<br>around <em>your anatomy?</em>
     </h2>
-    <p class="cta-sub reveal delay-2">Free consultation · No obligation · 144 East 74th Street, NYC</p>
+    <p class="cta-sub reveal delay-2">Free consultation · No obligation · 144 East 74th Street, Upper East Side NYC</p>
   </div>
   <div class="cta-right reveal delay-3">
     <a href="tel:+16467659568" class="cta-phone">(646) 765-9568</a>
@@ -1071,17 +1134,33 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
 </section>
 
 <!-- ═══════════════════════════════════════════
-     INSTAGRAM
+     INSTAGRAM FEED
 ══════════════════════════════════════════════ -->
 <section class="insta-section">
   <div class="insta-header">
     <div>
       <p class="section-label reveal">Follow our work</p>
-      <p class="insta-handle reveal delay-1">@modlinskalips.nyc</p>
+      <p class="insta-handle reveal delay-1">@notjustlipsnewyork</p>
     </div>
-    <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank" class="insta-link reveal">See all on Instagram →</a>
+    <a href="https://www.instagram.com/notjustlipsnewyork/" target="_blank" class="insta-link reveal">Open Instagram →</a>
   </div>
-  <div class="insta-grid">
+
+  <!-- Instagram Feed via Elfsight widget — бесплатно, без кода -->
+  <!-- Замените data-elfsight-app-lazy на ваш виджет с elfsight.com если нужно -->
+  <!-- Или используем простой iframe embed профиля -->
+  <div class="insta-feed-wrap reveal">
+    <iframe
+      src="https://www.instagram.com/notjustlipsnewyork/embed"
+      class="insta-feed-iframe"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true">
+    </iframe>
+    <div class="insta-feed-overlay">
+      <a href="https://www.instagram.com/notjustlipsnewyork/" target="_blank" class="btn btn-outline">View full feed on Instagram →</a>
+    </div>
+  </div>
+  <div style="display:none"><div class="insta-grid">
     <!--
     ════════════════════════════════════════════
     📸 ИНСТАГРАМ — 6 КВАДРАТНЫХ ФОТО
@@ -1091,30 +1170,30 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
     ════════════════════════════════════════════
     -->
     <div class="insta-item reveal delay-1">
-      <img src="IMG_5539.JPG" alt="">
+      <img src="IMG_4643.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-2">
-      <img src="IMG_5540.JPG" alt="">
+      <img src="IMG_4635.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-3">
-      <img src="IMG_5538.JPG" alt="">
+      <img src="IMG_4639.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-1">
-      <img src="IMG_5532.JPG" alt="">
+      <img src="IMG_4643.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-2">
-      <img src="IMG_5533.JPG" alt="">
+      <img src="IMG_4648.JPG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
     <div class="insta-item reveal delay-3">
-      <img src="IMG_5537.JPG" alt="">
+      <img src="IMG_4599.PNG" alt="">
       <div class="insta-overlay"><span class="insta-plus">+</span></div>
     </div>
-  </div>
+  </div></div>
 </section>
 
 <!-- ═══════════════════════════════════════════
@@ -1126,7 +1205,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       <div class="footer-logo"><span class="logo-not">not</span><span class="logo-just">JUST</span><span class="logo-lips">LIPS</span></div>
       <p class="footer-tagline">Aesthetic Injector Clinic by Olga Modlinska, RN · Upper East Side, Manhattan, New York</p>
       <div class="footer-social">
-        <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank">IG</a>
+        <a href="https://www.instagram.com/notjustlipsnewyork/" target="_blank">IG</a>
         <a href="https://www.facebook.com/modlinskalips/" target="_blank">FB</a>
         <a href="tel:+16467659568">Tel</a>
       </div>
@@ -1145,7 +1224,7 @@ footer { background: var(--deep); padding: 72px 80px 40px; }
       <h4>Contact</h4>
       <a href="tel:+16467659568">(646) 765-9568</a>
       <a href="/cdn-cgi/l/email-protection#bad3d4dcd5fad4d5ced0cfc9ced6d3cac9d4dfcdc3d5c8d194d9d5d7"><span class="__cf_email__" data-cfemail="167f787079567879627c6365627a7f66657873616f79647d3875797b">[email&#160;protected]</span></a>
-      <a href="https://www.instagram.com/modlinskalips.nyc/" target="_blank">@modlinskalips.nyc</a>
+      <a href="https://www.instagram.com/notjustlipsnewyork/" target="_blank">@notjustlipsnewyork</a>
       <p style="margin-top:12px; color: rgba(250,246,241,0.3)">Booking Manager: Sasha</p>
     </div>
     <div class="footer-col">
